@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SkillConnect | Local Work • Local People • Stronger Communities</title>
-  <meta name="description" content="Connect with trusted local workers and nearby job opportunities based on skills, location, availability and experience.">
+  <title>Job Interview – Local Job &amp; Skill Matching Portal for Daily-Wage Workers</title>
+  <meta name="description" content="Connecting Workers with Opportunities. Find local jobs or hire skilled workers — all in one place.">
 
-  <!-- Google Fonts: Inter & Caveat -->
+  <!-- Google Fonts: Inter -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -19,29 +19,14 @@
         extend: {
           fontFamily: {
             sans: ['Inter', 'sans-serif'],
-            handwriting: ['Caveat', 'cursive']
           },
           colors: {
-            primary: {
-              DEFAULT: '#107c41',
-              dark: '#0c6233',
-              light: '#e8f5ed'
-            },
-            brandNavy: '#0f172a'
-          },
-          keyframes: {
-            fadeUp: {
-              '0%': { opacity: '0', transform: 'translateY(24px)' },
-              '100%': { opacity: '1', transform: 'translateY(0)' }
-            },
-            fadeIn: {
-              '0%': { opacity: '0' },
-              '100%': { opacity: '1' }
+            brandNavy: '#0f172a',
+            brandTeal: {
+              DEFAULT: '#0f766e',
+              dark: '#115e59',
+              light: '#f0fdfa'
             }
-          },
-          animation: {
-            'fade-up': 'fadeUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards',
-            'fade-in': 'fadeIn 0.6s ease-out forwards'
           }
         }
       }
@@ -50,293 +35,323 @@
 
   <!-- Lucide Icons -->
   <script src="https://unpkg.com/lucide@latest"></script>
-
-  <style>
-    .animate-delay-100 { animation-delay: 100ms; }
-    .animate-delay-200 { animation-delay: 200ms; }
-    .animate-delay-300 { animation-delay: 300ms; }
-    .animate-delay-400 { animation-delay: 400ms; }
-    .animate-delay-500 { animation-delay: 500ms; }
-  </style>
 </head>
-<body class="font-sans bg-slate-50 text-slate-800 antialiased overflow-x-hidden min-h-screen flex flex-col justify-between selection:bg-emerald-100 selection:text-emerald-900">
+<body class="bg-[#fafaf9] text-[#0f172a] font-sans min-h-screen flex flex-col justify-between selection:bg-teal-100 selection:text-teal-900 antialiased">
 
-  <!-- Header / Navbar -->
-  <header class="w-full bg-white/95 backdrop-blur-md sticky top-0 z-40 border-b border-slate-100/80 transition-all">
-    <div class="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 py-4 flex items-center justify-between">
+  <!-- Header: Clean, minimal, professionally aligned -->
+  <header class="w-full bg-white/95 backdrop-blur-md sticky top-0 z-50 border-b border-stone-200/80 transition-all">
+    <div class="max-w-6xl mx-auto px-6 sm:px-10 lg:px-12 py-4 flex items-center justify-between">
       
-      <!-- Logo & Brand Identity -->
-      <a href="#" class="flex items-center gap-3 group">
-        <!-- Stylized Logo Mark: Two overlapping community figures -->
-        <div class="relative w-10 h-10 flex-shrink-0">
-          <svg viewBox="0 0 100 100" class="w-full h-full" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <!-- Left Figure (Vibrant Emerald Green) -->
-            <circle cx="34" cy="32" r="14" fill="#16A34A" />
-            <path d="M12 76C12 58 22 50 36 50C48 50 56 57 58 68C58.5 70.5 56.5 73 54 73H18C14.7 73 12 70.3 12 67V76Z" fill="#16A34A" />
-            
-            <!-- Right Figure (Deep Navy Blue) -->
-            <circle cx="68" cy="32" r="14" fill="#0F2744" />
-            <path d="M48 76C48 57 58 50 72 50C86 50 94 58 94 76H48Z" fill="#0F2744" />
-          </svg>
-        </div>
-        
-        <div>
-          <span class="block text-2xl font-extrabold tracking-tight text-slate-900 group-hover:text-emerald-700 transition-colors leading-none">
-            SkillConnect
-          </span>
-          <span class="block text-[11px] font-medium text-slate-500 tracking-normal mt-1 leading-none">
-            Local Work &bull; Local People &bull; Stronger Communities
-          </span>
-        </div>
+      <!-- Top-left: Text logo "Job Interview" -->
+      <a href="#" onclick="showSection('home'); return false;" class="flex items-center gap-2 group cursor-pointer">
+        <span class="text-2xl font-extrabold tracking-tight text-[#0f172a] group-hover:text-teal-700 transition-colors">
+          Job Interview
+        </span>
       </a>
 
-      <!-- Center Desktop Navigation Links -->
-      <nav class="hidden md:flex items-center gap-8 lg:gap-10">
-        <a href="#" class="text-sm font-semibold text-emerald-700 relative py-1 transition-colors group">
-          Home
-          <span class="absolute bottom-0 left-1/2 -translate-x-1/2 w-6 h-0.5 bg-emerald-600 rounded-full"></span>
-        </a>
-        <a href="#jobs" class="text-sm font-medium text-slate-600 hover:text-emerald-700 transition-colors py-1">
-          Find Jobs
-        </a>
-        <a href="#workers" class="text-sm font-medium text-slate-600 hover:text-emerald-700 transition-colors py-1">
-          Find Workers
-        </a>
-        <a href="#about" class="text-sm font-medium text-slate-600 hover:text-emerald-700 transition-colors py-1">
-          About
-        </a>
-      </nav>
-
-      <!-- Right Desktop Auth Actions -->
-      <div class="hidden md:flex items-center gap-3">
-        <button class="px-6 py-2 rounded-full border border-slate-300 hover:border-slate-400 text-slate-800 hover:text-slate-950 text-sm font-medium hover:bg-slate-50/80 transition-all">
+      <!-- Top-right: Login and Sign Up options -->
+      <div class="flex items-center gap-3 sm:gap-4">
+        <a href="#login" onclick="showSection('login'); return false;" class="px-4 sm:px-5 py-2 rounded-xl text-sm font-semibold text-stone-700 hover:text-[#0f172a] hover:bg-stone-100 transition-all">
           Login
-        </button>
-        <button class="px-6 py-2 rounded-full bg-[#107c41] hover:bg-[#0c6233] text-white text-sm font-semibold shadow-sm hover:shadow transition-all">
+        </a>
+        <a href="#signup" onclick="showSection('signup'); return false;" class="px-5 sm:px-6 py-2 rounded-xl text-sm font-semibold bg-teal-700 hover:bg-teal-800 text-white shadow-sm hover:shadow transition-all">
           Sign Up
-        </button>
+        </a>
       </div>
-
-      <!-- Mobile Hamburger Button -->
-      <button id="mobileMenuBtn" class="md:hidden p-2 rounded-lg text-slate-700 hover:text-slate-950 hover:bg-slate-100 transition-colors" aria-label="Toggle Navigation Menu">
-        <i data-lucide="menu" class="w-6 h-6"></i>
-      </button>
 
     </div>
   </header>
 
-  <!-- Mobile Drawer / Overlay -->
-  <div id="mobileDrawer" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300 md:hidden">
-    <div id="drawerContent" class="fixed right-0 top-0 bottom-0 w-full max-w-xs bg-white shadow-2xl p-6 flex flex-col justify-between translate-x-full transition-transform duration-300">
-      <div>
-        <div class="flex items-center justify-between pb-6 border-b border-slate-100">
-          <div class="flex items-center gap-2">
-            <span class="text-xl font-extrabold text-slate-900">SkillConnect</span>
+  <!-- Main Content Area -->
+  <main class="flex-grow flex flex-col justify-center py-8 sm:py-12 lg:py-16">
+    
+    <!-- Landing Page Main Section -->
+    <section id="homeSection" class="max-w-6xl mx-auto px-6 sm:px-10 lg:px-12 w-full">
+      
+      <!-- Main Heading & Subtitle -->
+      <div class="text-center max-w-3xl mx-auto">
+        <h1 class="text-3xl sm:text-5xl lg:text-[3.25rem] font-extrabold text-[#0f172a] tracking-tight leading-[1.15]">
+          Connecting Workers with Opportunities
+        </h1>
+        <p class="mt-4 sm:mt-5 text-base sm:text-lg lg:text-xl text-stone-600 leading-relaxed font-normal">
+          Find local jobs or hire skilled workers — all in one place.
+        </p>
+      </div>
+
+      <!-- High-Quality Realistic Photograph of Indian Daily-Wage & Semi-Skilled Workers -->
+      <div class="mt-8 sm:mt-10 max-w-5xl mx-auto">
+        <div class="relative rounded-2xl sm:rounded-3xl overflow-hidden shadow-lg border border-stone-200 bg-white">
+          <img
+            src="assets/skillconnect-hero.jpg"
+            alt="Indian daily-wage and semi-skilled workers, including electricians, plumbers, carpenters, painters, and construction workers"
+            class="w-full h-64 sm:h-80 lg:h-[420px] object-cover object-center"
+          >
+          <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none"></div>
+          <div class="absolute bottom-4 left-4 sm:bottom-6 sm:left-6 text-white text-xs sm:text-sm font-medium bg-black/40 backdrop-blur-md px-3.5 py-1.5 rounded-full">
+            Verified Local Trades &amp; Skilled Workforce
           </div>
-          <button id="closeDrawerBtn" class="p-2 text-slate-500 hover:text-slate-800 rounded-lg hover:bg-slate-100 transition-colors">
-            <i data-lucide="x" class="w-6 h-6"></i>
-          </button>
         </div>
-
-        <nav class="flex flex-col gap-4 mt-8">
-          <a href="#" class="mobile-nav-link text-lg font-semibold text-emerald-700 py-2 border-b border-slate-50">Home</a>
-          <a href="#jobs" class="mobile-nav-link text-lg font-medium text-slate-700 hover:text-emerald-700 py-2 border-b border-slate-50">Find Jobs</a>
-          <a href="#workers" class="mobile-nav-link text-lg font-medium text-slate-700 hover:text-emerald-700 py-2 border-b border-slate-50">Find Workers</a>
-          <a href="#about" class="mobile-nav-link text-lg font-medium text-slate-700 hover:text-emerald-700 py-2 border-b border-slate-50">About</a>
-        </nav>
       </div>
 
-      <div class="flex flex-col gap-3 pt-6 border-t border-slate-100">
-        <button class="w-full py-3 rounded-full border border-slate-300 text-slate-800 font-medium hover:bg-slate-50">
-          Login
-        </button>
-        <button class="w-full py-3 rounded-full bg-[#107c41] text-white font-semibold shadow-sm">
-          Sign Up
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <!-- Hero Main Section -->
-  <main class="relative flex-grow flex items-center overflow-hidden">
-    <!-- Ambient Background / City & Skies -->
-    <div class="absolute inset-0 z-0 pointer-events-none">
-      <img src="assets/skillconnect-hero.jpg" alt="Local skilled workers and city skyline" class="w-full h-full object-cover object-center lg:object-[80%_center] filter brightness-[0.98]">
-      <!-- Left side gradient overlay for crystal clear text readability -->
-      <div class="absolute inset-0 bg-gradient-to-r from-white via-white/85 sm:via-white/70 to-transparent lg:w-3/5 w-full"></div>
-      <div class="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent h-24 bottom-0"></div>
-    </div>
-
-    <!-- Hero Content Container -->
-    <div class="relative z-10 max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 py-12 sm:py-16 lg:py-24 w-full">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+      <!-- Two Main Options: Side-by-Side Cards -->
+      <div class="mt-12 sm:mt-16 max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
         
-        <!-- Left Content Column -->
-        <div class="lg:col-span-7 xl:col-span-6 max-w-xl">
-          
-          <!-- Stacked Headings -->
-          <div class="space-y-1 sm:space-y-2 opacity-0 animate-fade-up animate-delay-100">
-            <h1 class="text-4xl sm:text-6xl xl:text-7xl font-extrabold tracking-tight text-slate-900 leading-[1.05]">
-              Find Work.
-            </h1>
-            <h1 class="text-4xl sm:text-6xl xl:text-7xl font-extrabold tracking-tight text-slate-900 leading-[1.05]">
-              Find Workers.
-            </h1>
-            <h1 class="text-4xl sm:text-6xl xl:text-7xl font-extrabold tracking-tight text-[#107c41] leading-[1.05]">
-              Build Your Future.
-            </h1>
+        <!-- Card 1 — Find Job -->
+        <div class="bg-white rounded-2xl border border-stone-200/90 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col overflow-hidden group hover:-translate-y-1">
+          <div class="relative h-60 sm:h-64 overflow-hidden bg-stone-100">
+            <img
+              src="assets/find-job-worker.jpg"
+              alt="A skilled worker looking for employment and ready for work with tools"
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+            >
+            <div class="absolute top-4 left-4 bg-white/95 backdrop-blur-sm text-teal-800 text-xs font-semibold px-3 py-1 rounded-full shadow-sm">
+              For Job Seekers
+            </div>
           </div>
 
-          <!-- Subtext -->
-          <p class="mt-6 text-base sm:text-lg text-slate-700 font-normal leading-relaxed opacity-0 animate-fade-up animate-delay-200">
-            Connect with trusted local workers and nearby job opportunities based on skills, location, availability and experience.
-          </p>
+          <div class="p-6 sm:p-8 flex flex-col flex-grow justify-between">
+            <div>
+              <h2 class="text-2xl font-bold text-[#0f172a] group-hover:text-teal-700 transition-colors">
+                Find Job
+              </h2>
+              <p class="mt-3 text-stone-600 text-sm sm:text-base leading-relaxed">
+                Discover nearby job opportunities that match your skills.
+              </p>
+            </div>
 
-          <!-- Dual CTA Buttons -->
-          <div class="mt-8 sm:mt-10 flex flex-wrap items-center gap-4 opacity-0 animate-fade-up animate-delay-300">
-            <!-- Find a Job Button -->
-            <a href="#jobs" class="inline-flex items-center gap-2.5 px-7 py-3.5 sm:py-4 rounded-full bg-[#107c41] hover:bg-[#0c6233] text-white font-semibold text-sm sm:text-base shadow-lg shadow-emerald-800/20 hover:shadow-xl hover:shadow-emerald-800/30 transition-all transform hover:-translate-y-0.5 group">
-              <i data-lucide="search" class="w-5 h-5 text-white/90"></i>
-              <span>Find a Job</span>
-              <i data-lucide="arrow-right" class="w-4 h-4 ml-0.5 transform group-hover:translate-x-1 transition-transform"></i>
-            </a>
-
-            <!-- Find a Worker Button -->
-            <a href="#workers" class="inline-flex items-center gap-2.5 px-7 py-3.5 sm:py-4 rounded-full bg-white hover:bg-slate-50 text-slate-800 font-semibold text-sm sm:text-base border border-slate-300 hover:border-slate-400 shadow-sm hover:shadow transition-all transform hover:-translate-y-0.5 group">
-              <i data-lucide="users" class="w-5 h-5 text-slate-600"></i>
-              <span>Find a Worker</span>
-              <i data-lucide="arrow-right" class="w-4 h-4 ml-0.5 transform group-hover:translate-x-1 transition-transform"></i>
-            </a>
+            <div class="mt-6 pt-2">
+              <a
+                href="#find-job"
+                onclick="showSection('find-job'); return false;"
+                class="w-full inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl bg-teal-700 hover:bg-teal-800 text-white font-semibold text-sm sm:text-base transition-all shadow-sm hover:shadow group/btn"
+              >
+                <i data-lucide="briefcase" class="w-5 h-5"></i>
+                <span>Find Job</span>
+                <i data-lucide="arrow-right" class="w-4 h-4 transform group-hover/btn:translate-x-1 transition-transform"></i>
+              </a>
+            </div>
           </div>
-
         </div>
 
-        <!-- Right Side: Floating Annotation Accent -->
-        <div class="hidden lg:block lg:col-span-5 xl:col-span-6 relative h-full">
-          <!-- Handwritten Script Badge with decorative arrow flourish -->
-          <div class="absolute right-6 top-[-40px] xl:top-[-60px] opacity-0 animate-fade-in animate-delay-400 pointer-events-none select-none">
-            <div class="relative transform -rotate-6">
-              <span class="font-handwriting text-2xl xl:text-3xl font-bold text-[#1e293b] leading-tight tracking-wide block drop-shadow-sm">
-                Local Skills<br>
-                Create Stronger<br>
-                Communities
-              </span>
-              <!-- Decorative Hand-drawn Arrow SVG -->
-              <svg class="w-24 h-12 text-[#1e293b] mt-1 ml-4" viewBox="0 0 100 50" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M10 15 Q 50 45 85 28" />
-                <path d="M72 32 L 85 28 L 82 15" />
-              </svg>
+        <!-- Card 2 — Find Worker -->
+        <div class="bg-white rounded-2xl border border-stone-200/90 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col overflow-hidden group hover:-translate-y-1">
+          <div class="relative h-60 sm:h-64 overflow-hidden bg-stone-100">
+            <img
+              src="assets/find-worker-employer.jpg"
+              alt="An employer hiring a worker or a skilled professional at work"
+              class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
+            >
+            <div class="absolute top-4 left-4 bg-white/95 backdrop-blur-sm text-[#0f172a] text-xs font-semibold px-3 py-1 rounded-full shadow-sm">
+              For Employers &amp; Contractors
+            </div>
+          </div>
+
+          <div class="p-6 sm:p-8 flex flex-col flex-grow justify-between">
+            <div>
+              <h2 class="text-2xl font-bold text-[#0f172a] group-hover:text-teal-700 transition-colors">
+                Find Worker
+              </h2>
+              <p class="mt-3 text-stone-600 text-sm sm:text-base leading-relaxed">
+                Find and hire reliable local workers for your needs.
+              </p>
+            </div>
+
+            <div class="mt-6 pt-2">
+              <a
+                href="#find-worker"
+                onclick="showSection('find-worker'); return false;"
+                class="w-full inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl bg-[#0f172a] hover:bg-[#1e293b] text-white font-semibold text-sm sm:text-base transition-all shadow-sm hover:shadow group/btn"
+              >
+                <i data-lucide="users" class="w-5 h-5"></i>
+                <span>Find Worker</span>
+                <i data-lucide="arrow-right" class="w-4 h-4 transform group-hover/btn:translate-x-1 transition-transform"></i>
+              </a>
             </div>
           </div>
         </div>
 
       </div>
-    </div>
+
+    </section>
+
+    <!-- Sub-Section: Find Job (Job Seeker Section) -->
+    <section id="findJobSection" class="hidden max-w-3xl mx-auto px-6 py-8 w-full">
+      <button onclick="showSection('home')" class="inline-flex items-center gap-2 text-sm font-semibold text-stone-600 hover:text-teal-700 mb-6 transition-colors">
+        <i data-lucide="arrow-left" class="w-4 h-4"></i> Back to Home
+      </button>
+      <div class="bg-white rounded-2xl border border-stone-200 p-8 shadow-sm">
+        <h2 class="text-3xl font-extrabold text-[#0f172a]">Find Daily-Wage &amp; Skilled Jobs</h2>
+        <p class="text-stone-600 mt-2">Discover nearby verified daily-wage and contractor job openings.</p>
+        
+        <div class="mt-6 space-y-4">
+          <div class="p-4 rounded-xl border border-stone-200 bg-stone-50 flex items-center justify-between">
+            <div>
+              <h3 class="font-bold text-[#0f172a]">Electrician Needed - Residential Wiring</h3>
+              <p class="text-sm text-stone-600">Location: Local Area &bull; Daily Wage: ₹800 - ₹1,000 / day</p>
+            </div>
+            <span class="px-3 py-1 bg-teal-100 text-teal-800 text-xs font-semibold rounded-full">Active</span>
+          </div>
+          <div class="p-4 rounded-xl border border-stone-200 bg-stone-50 flex items-center justify-between">
+            <div>
+              <h3 class="font-bold text-[#0f172a]">Carpenter - Furniture Repair &amp; Fitting</h3>
+              <p class="text-sm text-stone-600">Location: City Center &bull; Daily Wage: ₹900 - ₹1,200 / day</p>
+            </div>
+            <span class="px-3 py-1 bg-teal-100 text-teal-800 text-xs font-semibold rounded-full">Active</span>
+          </div>
+          <div class="p-4 rounded-xl border border-stone-200 bg-stone-50 flex items-center justify-between">
+            <div>
+              <h3 class="font-bold text-[#0f172a]">Plumber - Pipe Installation &amp; Leakage</h3>
+              <p class="text-sm text-stone-600">Location: North Zone &bull; Daily Wage: ₹850 - ₹1,100 / day</p>
+            </div>
+            <span class="px-3 py-1 bg-teal-100 text-teal-800 text-xs font-semibold rounded-full">Active</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sub-Section: Find Worker (Employer Section) -->
+    <section id="findWorkerSection" class="hidden max-w-3xl mx-auto px-6 py-8 w-full">
+      <button onclick="showSection('home')" class="inline-flex items-center gap-2 text-sm font-semibold text-stone-600 hover:text-teal-700 mb-6 transition-colors">
+        <i data-lucide="arrow-left" class="w-4 h-4"></i> Back to Home
+      </button>
+      <div class="bg-white rounded-2xl border border-stone-200 p-8 shadow-sm">
+        <h2 class="text-3xl font-extrabold text-[#0f172a]">Hire Trusted Local Workers</h2>
+        <p class="text-stone-600 mt-2">Connect with verified daily-wage and skilled workers ready for hire.</p>
+        
+        <div class="mt-6 space-y-4">
+          <div class="p-4 rounded-xl border border-stone-200 bg-stone-50 flex items-center justify-between">
+            <div>
+              <h3 class="font-bold text-[#0f172a]">Ramesh Kumar - Master Electrician</h3>
+              <p class="text-sm text-stone-600">Experience: 7 Years &bull; Rating: 4.9 ★ &bull; Available Today</p>
+            </div>
+            <button class="px-4 py-2 bg-teal-700 text-white rounded-lg text-sm font-semibold hover:bg-teal-800">Contact</button>
+          </div>
+          <div class="p-4 rounded-xl border border-stone-200 bg-stone-50 flex items-center justify-between">
+            <div>
+              <h3 class="font-bold text-[#0f172a]">Suresh Sharma - Carpenter &amp; Woodworker</h3>
+              <p class="text-sm text-stone-600">Experience: 5 Years &bull; Rating: 4.8 ★ &bull; Available Tomorrow</p>
+            </div>
+            <button class="px-4 py-2 bg-teal-700 text-white rounded-lg text-sm font-semibold hover:bg-teal-800">Contact</button>
+          </div>
+          <div class="p-4 rounded-xl border border-stone-200 bg-stone-50 flex items-center justify-between">
+            <div>
+              <h3 class="font-bold text-[#0f172a]">Mohan Lal - Construction &amp; Masonry</h3>
+              <p class="text-sm text-stone-600">Experience: 8 Years &bull; Rating: 5.0 ★ &bull; Available Today</p>
+            </div>
+            <button class="px-4 py-2 bg-teal-700 text-white rounded-lg text-sm font-semibold hover:bg-teal-800">Contact</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sub-Section: Login -->
+    <section id="loginSection" class="hidden max-w-md mx-auto px-6 py-8 w-full">
+      <button onclick="showSection('home')" class="inline-flex items-center gap-2 text-sm font-semibold text-stone-600 hover:text-teal-700 mb-6 transition-colors">
+        <i data-lucide="arrow-left" class="w-4 h-4"></i> Back to Home
+      </button>
+      <div class="bg-white rounded-2xl border border-stone-200 p-8 shadow-sm">
+        <h2 class="text-2xl font-extrabold text-[#0f172a]">Login to Job Interview</h2>
+        <p class="text-stone-600 text-sm mt-1">Access your worker or employer profile.</p>
+        <form class="mt-6 space-y-4" onsubmit="event.preventDefault(); alert('Login functionality connected.');">
+          <div>
+            <label class="block text-xs font-semibold text-stone-700 uppercase tracking-wider mb-1">Mobile Number or Email</label>
+            <input type="text" placeholder="Enter mobile or email" class="w-full px-4 py-2.5 rounded-xl border border-stone-300 focus:outline-none focus:ring-2 focus:ring-teal-700 text-sm">
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-stone-700 uppercase tracking-wider mb-1">Password or OTP</label>
+            <input type="password" placeholder="Enter password or OTP" class="w-full px-4 py-2.5 rounded-xl border border-stone-300 focus:outline-none focus:ring-2 focus:ring-teal-700 text-sm">
+          </div>
+          <button type="submit" class="w-full py-3 bg-teal-700 hover:bg-teal-800 text-white rounded-xl font-semibold text-sm transition-all shadow-sm">
+            Login
+          </button>
+        </form>
+      </div>
+    </section>
+
+    <!-- Sub-Section: Sign Up -->
+    <section id="signupSection" class="hidden max-w-md mx-auto px-6 py-8 w-full">
+      <button onclick="showSection('home')" class="inline-flex items-center gap-2 text-sm font-semibold text-stone-600 hover:text-teal-700 mb-6 transition-colors">
+        <i data-lucide="arrow-left" class="w-4 h-4"></i> Back to Home
+      </button>
+      <div class="bg-white rounded-2xl border border-stone-200 p-8 shadow-sm">
+        <h2 class="text-2xl font-extrabold text-[#0f172a]">Create an Account</h2>
+        <p class="text-stone-600 text-sm mt-1">Join as a daily-wage worker or an employer.</p>
+        <form class="mt-6 space-y-4" onsubmit="event.preventDefault(); alert('Account registration connected.');">
+          <div>
+            <label class="block text-xs font-semibold text-stone-700 uppercase tracking-wider mb-1">Full Name</label>
+            <input type="text" placeholder="Enter your full name" class="w-full px-4 py-2.5 rounded-xl border border-stone-300 focus:outline-none focus:ring-2 focus:ring-teal-700 text-sm">
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-stone-700 uppercase tracking-wider mb-1">I am a</label>
+            <select class="w-full px-4 py-2.5 rounded-xl border border-stone-300 focus:outline-none focus:ring-2 focus:ring-teal-700 text-sm bg-white">
+              <option value="worker">Worker (Electrician, Plumber, Mason, etc.)</option>
+              <option value="employer">Employer / Contractor / Homeowner</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-stone-700 uppercase tracking-wider mb-1">Mobile Number</label>
+            <input type="tel" placeholder="10-digit mobile number" class="w-full px-4 py-2.5 rounded-xl border border-stone-300 focus:outline-none focus:ring-2 focus:ring-teal-700 text-sm">
+          </div>
+          <button type="submit" class="w-full py-3 bg-teal-700 hover:bg-teal-800 text-white rounded-xl font-semibold text-sm transition-all shadow-sm">
+            Sign Up
+          </button>
+        </form>
+      </div>
+    </section>
+
   </main>
 
-  <!-- Bottom Value Proposition / Feature Highlights Bar -->
-  <footer class="w-full bg-white border-t border-slate-200/80 shadow-sm relative z-20">
-    <div class="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 py-6 sm:py-8">
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 divide-y sm:divide-y-0 sm:divide-x divide-slate-100">
-        
-        <!-- Feature 1: Local Opportunities -->
-        <div class="flex items-center gap-4 pt-4 sm:pt-0 sm:first:pt-0 group">
-          <div class="w-12 h-12 rounded-full bg-[#107c41] flex items-center justify-center flex-shrink-0 text-white shadow-md shadow-emerald-700/20 group-hover:scale-105 transition-transform">
-            <i data-lucide="map-pin" class="w-6 h-6"></i>
-          </div>
-          <div>
-            <h3 class="text-sm sm:text-base font-bold text-slate-900 group-hover:text-emerald-700 transition-colors">
-              Local Opportunities
-            </h3>
-            <p class="text-xs sm:text-sm text-slate-500 font-normal mt-0.5">
-              Jobs and workers near you
-            </p>
-          </div>
-        </div>
-
-        <!-- Feature 2: Trusted Profiles -->
-        <div class="flex items-center gap-4 pt-4 sm:pt-0 sm:pl-6 lg:pl-8 group">
-          <div class="w-12 h-12 rounded-full bg-blue-600 flex items-center justify-center flex-shrink-0 text-white shadow-md shadow-blue-600/20 group-hover:scale-105 transition-transform">
-            <i data-lucide="shield-check" class="w-6 h-6"></i>
-          </div>
-          <div>
-            <h3 class="text-sm sm:text-base font-bold text-slate-900 group-hover:text-blue-700 transition-colors">
-              Trusted Profiles
-            </h3>
-            <p class="text-xs sm:text-sm text-slate-500 font-normal mt-0.5">
-              Verified and reliable
-            </p>
-          </div>
-        </div>
-
-        <!-- Feature 3: Quick & Easy -->
-        <div class="flex items-center gap-4 pt-4 sm:pt-0 sm:pl-6 lg:pl-8 group">
-          <div class="w-12 h-12 rounded-full bg-amber-500 flex items-center justify-center flex-shrink-0 text-white shadow-md shadow-amber-500/20 group-hover:scale-105 transition-transform">
-            <i data-lucide="zap" class="w-6 h-6 fill-current"></i>
-          </div>
-          <div>
-            <h3 class="text-sm sm:text-base font-bold text-slate-900 group-hover:text-amber-600 transition-colors">
-              Quick & Easy
-            </h3>
-            <p class="text-xs sm:text-sm text-slate-500 font-normal mt-0.5">
-              Simple and fast process
-            </p>
-          </div>
-        </div>
-
-        <!-- Feature 4: Build Communities -->
-        <div class="flex items-center gap-4 pt-4 sm:pt-0 sm:pl-6 lg:pl-8 group">
-          <div class="w-12 h-12 rounded-full bg-indigo-600 flex items-center justify-center flex-shrink-0 text-white shadow-md shadow-indigo-600/20 group-hover:scale-105 transition-transform">
-            <i data-lucide="users" class="w-6 h-6"></i>
-          </div>
-          <div>
-            <h3 class="text-sm sm:text-base font-bold text-slate-900 group-hover:text-indigo-700 transition-colors">
-              Build Communities
-            </h3>
-            <p class="text-xs sm:text-sm text-slate-500 font-normal mt-0.5">
-              Support local employment
-            </p>
-          </div>
-        </div>
-
-      </div>
+  <!-- Clean Minimal Footer -->
+  <footer class="w-full bg-white border-t border-stone-200/80 py-6 text-center text-xs text-stone-500">
+    <div class="max-w-6xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-2">
+      <span>&copy; 2026 Job Interview. Local Job &amp; Skill Matching Portal.</span>
+      <span>Connecting daily-wage workers with verified local employment.</span>
     </div>
   </footer>
 
-  <!-- Script for Lucide Icons & Mobile Drawer -->
+  <!-- Routing Script -->
   <script>
-    // Initialize icons
     lucide.createIcons();
 
-    // Mobile drawer toggle
-    const menuBtn = document.getElementById('mobileMenuBtn');
-    const closeBtn = document.getElementById('closeDrawerBtn');
-    const drawer = document.getElementById('mobileDrawer');
-    const drawerContent = document.getElementById('drawerContent');
-    const navLinks = document.querySelectorAll('.mobile-nav-link');
+    function showSection(sectionName) {
+      const sections = {
+        'home': document.getElementById('homeSection'),
+        'find-job': document.getElementById('findJobSection'),
+        'find-worker': document.getElementById('findWorkerSection'),
+        'login': document.getElementById('loginSection'),
+        'signup': document.getElementById('signupSection')
+      };
 
-    function openMenu() {
-      drawer.classList.remove('opacity-0', 'pointer-events-none');
-      drawer.classList.add('opacity-100');
-      drawerContent.classList.remove('translate-x-full');
-      drawerContent.classList.add('translate-x-0');
-      document.body.classList.add('overflow-hidden');
+      Object.keys(sections).forEach(key => {
+        if (sections[key]) {
+          sections[key].classList.add('hidden');
+        }
+      });
+
+      if (sections[sectionName]) {
+        sections[sectionName].classList.remove('hidden');
+      } else {
+        sections['home'].classList.remove('hidden');
+      }
+
+      window.location.hash = sectionName === 'home' ? '' : sectionName;
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    function closeMenu() {
-      drawer.classList.add('opacity-0', 'pointer-events-none');
-      drawer.classList.remove('opacity-100');
-      drawerContent.classList.add('translate-x-full');
-      drawerContent.classList.remove('translate-x-0');
-      document.body.classList.remove('overflow-hidden');
-    }
-
-    menuBtn.addEventListener('click', openMenu);
-    closeBtn.addEventListener('click', closeMenu);
-    drawer.addEventListener('click', (e) => {
-      if (e.target === drawer) closeMenu();
+    window.addEventListener('hashchange', () => {
+      const hash = window.location.hash.replace('#', '');
+      if (['find-job', 'find-worker', 'login', 'signup'].includes(hash)) {
+        showSection(hash);
+      } else {
+        showSection('home');
+      }
     });
-    navLinks.forEach(link => link.addEventListener('click', closeMenu));
+
+    // Check hash on initial load
+    const initialHash = window.location.hash.replace('#', '');
+    if (['find-job', 'find-worker', 'login', 'signup'].includes(initialHash)) {
+      showSection(initialHash);
+    }
   </script>
 </body>
 </html>
