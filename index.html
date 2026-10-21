@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SkillConnect | Local Work • Local People • Stronger Communities</title>
+  <meta name="description" content="Connect with trusted local workers and nearby job opportunities based on skills, location, availability and experience.">
+
+  <!-- Google Fonts: Inter & Caveat -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            handwriting: ['Caveat', 'cursive']
+          },
+          colors: {
+            primary: {
+              DEFAULT: '#107c41',
+              dark: '#0c6233',
+              light: '#e8f5ed'
+            },
+            brandNavy: '#0f172a'
+          },
+          keyframes: {
+            fadeUp: {
+              '0%': { opacity: '0', transform: 'translateY(24px)' },
+              '100%': { opacity: '1', transform: 'translateY(0)' }
+            },
+            fadeIn: {
+              '0%': { opacity: '0' },
+              '100%': { opacity: '1' }
+            }
+          },
+          animation: {
+            'fade-up': 'fadeUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+            'fade-in': 'fadeIn 0.6s ease-out forwards'
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    .animate-delay-100 { animation-delay: 100ms; }
+    .animate-delay-200 { animation-delay: 200ms; }
+    .animate-delay-300 { animation-delay: 300ms; }
+    .animate-delay-400 { animation-delay: 400ms; }
+    .animate-delay-500 { animation-delay: 500ms; }
+  </style>
+</head>
+<body class="font-sans bg-slate-50 text-slate-800 antialiased overflow-x-hidden min-h-screen flex flex-col justify-between selection:bg-emerald-100 selection:text-emerald-900">
+
+  <!-- Header / Navbar -->
+  <header class="w-full bg-white/95 backdrop-blur-md sticky top-0 z-40 border-b border-slate-100/80 transition-all">
+    <div class="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 py-4 flex items-center justify-between">
+      
+      <!-- Logo & Brand Identity -->
+      <a href="#" class="flex items-center gap-3 group">
+        <!-- Stylized Logo Mark: Two overlapping community figures -->
+        <div class="relative w-10 h-10 flex-shrink-0">
+          <svg viewBox="0 0 100 100" class="w-full h-full" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Left Figure (Vibrant Emerald Green) -->
+            <circle cx="34" cy="32" r="14" fill="#16A34A" />
+            <path d="M12 76C12 58 22 50 36 50C48 50 56 57 58 68C58.5 70.5 56.5 73 54 73H18C14.7 73 12 70.3 12 67V76Z" fill="#16A34A" />
+            
+            <!-- Right Figure (Deep Navy Blue) -->
+            <circle cx="68" cy="32" r="14" fill="#0F2744" />
+            <path d="M48 76C48 57 58 50 72 50C86 50 94 58 94 76H48Z" fill="#0F2744" />
+          </svg>
+        </div>
+        
+        <div>
+          <span class="block text-2xl font-extrabold tracking-tight text-slate-900 group-hover:text-emerald-700 transition-colors leading-none">
+            SkillConnect
+          </span>
+          <span class="block text-[11px] font-medium text-slate-500 tracking-normal mt-1 leading-none">
+            Local Work &bull; Local People &bull; Stronger Communities
+          </span>
+        </div>
+      </a>
+
+      <!-- Center Desktop Navigation Links -->
+      <nav class="hidden md:flex items-center gap-8 lg:gap-10">
+        <a href="#" class="text-sm font-semibold text-emerald-700 relative py-1 transition-colors group">
+          Home
+          <span class="absolute bottom-0 left-1/2 -translate-x-1/2 w-6 h-0.5 bg-emerald-600 rounded-full"></span>
+        </a>
+        <a href="#jobs" class="text-sm font-medium text-slate-600 hover:text-emerald-700 transition-colors py-1">
+          Find Jobs
+        </a>
+        <a href="#workers" class="text-sm font-medium text-slate-600 hover:text-emerald-700 transition-colors py-1">
+          Find Workers
+        </a>
+        <a href="#about" class="text-sm font-medium text-slate-600 hover:text-emerald-700 transition-colors py-1">
+          About
+        </a>
+      </nav>
+
+      <!-- Right Desktop Auth Actions -->
+      <div class="hidden md:flex items-center gap-3">
+        <button class="px-6 py-2 rounded-full border border-slate-300 hover:border-slate-400 text-slate-800 hover:text-slate-950 text-sm font-medium hover:bg-slate-50/80 transition-all">
+          Login
+        </button>
+        <button class="px-6 py-2 rounded-full bg-[#107c41] hover:bg-[#0c6233] text-white text-sm font-semibold shadow-sm hover:shadow transition-all">
+          Sign Up
+        </button>
+      </div>
+
+      <!-- Mobile Hamburger Button -->
+      <button id="mobileMenuBtn" class="md:hidden p-2 rounded-lg text-slate-700 hover:text-slate-950 hover:bg-slate-100 transition-colors" aria-label="Toggle Navigation Menu">
+        <i data-lucide="menu" class="w-6 h-6"></i>
+      </button>
+
+    </div>
+  </header>
+
+  <!-- Mobile Drawer / Overlay -->
+  <div id="mobileDrawer" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300 md:hidden">
+    <div id="drawerContent" class="fixed right-0 top-0 bottom-0 w-full max-w-xs bg-white shadow-2xl p-6 flex flex-col justify-between translate-x-full transition-transform duration-300">
+      <div>
+        <div class="flex items-center justify-between pb-6 border-b border-slate-100">
+          <div class="flex items-center gap-2">
+            <span class="text-xl font-extrabold text-slate-900">SkillConnect</span>
+          </div>
+          <button id="closeDrawerBtn" class="p-2 text-slate-500 hover:text-slate-800 rounded-lg hover:bg-slate-100 transition-colors">
+            <i data-lucide="x" class="w-6 h-6"></i>
+          </button>
+        </div>
+
+        <nav class="flex flex-col gap-4 mt-8">
+          <a href="#" class="mobile-nav-link text-lg font-semibold text-emerald-700 py-2 border-b border-slate-50">Home</a>
+          <a href="#jobs" class="mobile-nav-link text-lg font-medium text-slate-700 hover:text-emerald-700 py-2 border-b border-slate-50">Find Jobs</a>
+          <a href="#workers" class="mobile-nav-link text-lg font-medium text-slate-700 hover:text-emerald-700 py-2 border-b border-slate-50">Find Workers</a>
+          <a href="#about" class="mobile-nav-link text-lg font-medium text-slate-700 hover:text-emerald-700 py-2 border-b border-slate-50">About</a>
+        </nav>
+      </div>
+
+      <div class="flex flex-col gap-3 pt-6 border-t border-slate-100">
+        <button class="w-full py-3 rounded-full border border-slate-300 text-slate-800 font-medium hover:bg-slate-50">
+          Login
+        </button>
+        <button class="w-full py-3 rounded-full bg-[#107c41] text-white font-semibold shadow-sm">
+          Sign Up
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hero Main Section -->
+  <main class="relative flex-grow flex items-center overflow-hidden">
+    <!-- Ambient Background / City & Skies -->
+    <div class="absolute inset-0 z-0 pointer-events-none">
+      <img src="assets/skillconnect-hero.jpg" alt="Local skilled workers and city skyline" class="w-full h-full object-cover object-center lg:object-[80%_center] filter brightness-[0.98]">
+      <!-- Left side gradient overlay for crystal clear text readability -->
+      <div class="absolute inset-0 bg-gradient-to-r from-white via-white/85 sm:via-white/70 to-transparent lg:w-3/5 w-full"></div>
+      <div class="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent h-24 bottom-0"></div>
+    </div>
+
+    <!-- Hero Content Container -->
+    <div class="relative z-10 max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 py-12 sm:py-16 lg:py-24 w-full">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        
+        <!-- Left Content Column -->
+        <div class="lg:col-span-7 xl:col-span-6 max-w-xl">
+          
+          <!-- Stacked Headings -->
+          <div class="space-y-1 sm:space-y-2 opacity-0 animate-fade-up animate-delay-100">
+            <h1 class="text-4xl sm:text-6xl xl:text-7xl font-extrabold tracking-tight text-slate-900 leading-[1.05]">
+              Find Work.
+            </h1>
+            <h1 class="text-4xl sm:text-6xl xl:text-7xl font-extrabold tracking-tight text-slate-900 leading-[1.05]">
+              Find Workers.
+            </h1>
+            <h1 class="text-4xl sm:text-6xl xl:text-7xl font-extrabold tracking-tight text-[#107c41] leading-[1.05]">
+              Build Your Future.
+            </h1>
+          </div>
+
+          <!-- Subtext -->
+          <p class="mt-6 text-base sm:text-lg text-slate-700 font-normal leading-relaxed opacity-0 animate-fade-up animate-delay-200">
+            Connect with trusted local workers and nearby job opportunities based on skills, location, availability and experience.
+          </p>
+
+          <!-- Dual CTA Buttons -->
+          <div class="mt-8 sm:mt-10 flex flex-wrap items-center gap-4 opacity-0 animate-fade-up animate-delay-300">
+            <!-- Find a Job Button -->
+            <a href="#jobs" class="inline-flex items-center gap-2.5 px-7 py-3.5 sm:py-4 rounded-full bg-[#107c41] hover:bg-[#0c6233] text-white font-semibold text-sm sm:text-base shadow-lg shadow-emerald-800/20 hover:shadow-xl hover:shadow-emerald-800/30 transition-all transform hover:-translate-y-0.5 group">
+              <i data-lucide="search" class="w-5 h-5 text-white/90"></i>
+              <span>Find a Job</span>
+              <i data-lucide="arrow-right" class="w-4 h-4 ml-0.5 transform group-hover:translate-x-1 transition-transform"></i>
+            </a>
+
+            <!-- Find a Worker Button -->
+            <a href="#workers" class="inline-flex items-center gap-2.5 px-7 py-3.5 sm:py-4 rounded-full bg-white hover:bg-slate-50 text-slate-800 font-semibold text-sm sm:text-base border border-slate-300 hover:border-slate-400 shadow-sm hover:shadow transition-all transform hover:-translate-y-0.5 group">
+              <i data-lucide="users" class="w-5 h-5 text-slate-600"></i>
+              <span>Find a Worker</span>
+              <i data-lucide="arrow-right" class="w-4 h-4 ml-0.5 transform group-hover:translate-x-1 transition-transform"></i>
+            </a>
+          </div>
+
+        </div>
+
+        <!-- Right Side: Floating Annotation Accent -->
+        <div class="hidden lg:block lg:col-span-5 xl:col-span-6 relative h-full">
+          <!-- Handwritten Script Badge with decorative arrow flourish -->
+          <div class="absolute right-6 top-[-40px] xl:top-[-60px] opacity-0 animate-fade-in animate-delay-400 pointer-events-none select-none">
+            <div class="relative transform -rotate-6">
+              <span class="font-handwriting text-2xl xl:text-3xl font-bold text-[#1e293b] leading-tight tracking-wide block drop-shadow-sm">
+                Local Skills<br>
+                Create Stronger<br>
+                Communities
+              </span>
+              <!-- Decorative Hand-drawn Arrow SVG -->
+              <svg class="w-24 h-12 text-[#1e293b] mt-1 ml-4" viewBox="0 0 100 50" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M10 15 Q 50 45 85 28" />
+                <path d="M72 32 L 85 28 L 82 15" />
+              </svg>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- Bottom Value Proposition / Feature Highlights Bar -->
+  <footer class="w-full bg-white border-t border-slate-200/80 shadow-sm relative z-20">
+    <div class="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 py-6 sm:py-8">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 divide-y sm:divide-y-0 sm:divide-x divide-slate-100">
+        
+        <!-- Feature 1: Local Opportunities -->
+        <div class="flex items-center gap-4 pt-4 sm:pt-0 sm:first:pt-0 group">
+          <div class="w-12 h-12 rounded-full bg-[#107c41] flex items-center justify-center flex-shrink-0 text-white shadow-md shadow-emerald-700/20 group-hover:scale-105 transition-transform">
+            <i data-lucide="map-pin" class="w-6 h-6"></i>
+          </div>
+          <div>
+            <h3 class="text-sm sm:text-base font-bold text-slate-900 group-hover:text-emerald-700 transition-colors">
+              Local Opportunities
+            </h3>
+            <p class="text-xs sm:text-sm text-slate-500 font-normal mt-0.5">
+              Jobs and workers near you
+            </p>
+          </div>
+        </div>
+
+        <!-- Feature 2: Trusted Profiles -->
+        <div class="flex items-center gap-4 pt-4 sm:pt-0 sm:pl-6 lg:pl-8 group">
+          <div class="w-12 h-12 rounded-full bg-blue-600 flex items-center justify-center flex-shrink-0 text-white shadow-md shadow-blue-600/20 group-hover:scale-105 transition-transform">
+            <i data-lucide="shield-check" class="w-6 h-6"></i>
+          </div>
+          <div>
+            <h3 class="text-sm sm:text-base font-bold text-slate-900 group-hover:text-blue-700 transition-colors">
+              Trusted Profiles
+            </h3>
+            <p class="text-xs sm:text-sm text-slate-500 font-normal mt-0.5">
+              Verified and reliable
+            </p>
+          </div>
+        </div>
+
+        <!-- Feature 3: Quick & Easy -->
+        <div class="flex items-center gap-4 pt-4 sm:pt-0 sm:pl-6 lg:pl-8 group">
+          <div class="w-12 h-12 rounded-full bg-amber-500 flex items-center justify-center flex-shrink-0 text-white shadow-md shadow-amber-500/20 group-hover:scale-105 transition-transform">
+            <i data-lucide="zap" class="w-6 h-6 fill-current"></i>
+          </div>
+          <div>
+            <h3 class="text-sm sm:text-base font-bold text-slate-900 group-hover:text-amber-600 transition-colors">
+              Quick & Easy
+            </h3>
+            <p class="text-xs sm:text-sm text-slate-500 font-normal mt-0.5">
+              Simple and fast process
+            </p>
+          </div>
+        </div>
+
+        <!-- Feature 4: Build Communities -->
+        <div class="flex items-center gap-4 pt-4 sm:pt-0 sm:pl-6 lg:pl-8 group">
+          <div class="w-12 h-12 rounded-full bg-indigo-600 flex items-center justify-center flex-shrink-0 text-white shadow-md shadow-indigo-600/20 group-hover:scale-105 transition-transform">
+            <i data-lucide="users" class="w-6 h-6"></i>
+          </div>
+          <div>
+            <h3 class="text-sm sm:text-base font-bold text-slate-900 group-hover:text-indigo-700 transition-colors">
+              Build Communities
+            </h3>
+            <p class="text-xs sm:text-sm text-slate-500 font-normal mt-0.5">
+              Support local employment
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </footer>
+
+  <!-- Script for Lucide Icons & Mobile Drawer -->
+  <script>
+    // Initialize icons
+    lucide.createIcons();
+
+    // Mobile drawer toggle
+    const menuBtn = document.getElementById('mobileMenuBtn');
+    const closeBtn = document.getElementById('closeDrawerBtn');
+    const drawer = document.getElementById('mobileDrawer');
+    const drawerContent = document.getElementById('drawerContent');
+    const navLinks = document.querySelectorAll('.mobile-nav-link');
+
+    function openMenu() {
+      drawer.classList.remove('opacity-0', 'pointer-events-none');
+      drawer.classList.add('opacity-100');
+      drawerContent.classList.remove('translate-x-full');
+      drawerContent.classList.add('translate-x-0');
+      document.body.classList.add('overflow-hidden');
+    }
+
+    function closeMenu() {
+      drawer.classList.add('opacity-0', 'pointer-events-none');
+      drawer.classList.remove('opacity-100');
+      drawerContent.classList.add('translate-x-full');
+      drawerContent.classList.remove('translate-x-0');
+      document.body.classList.remove('overflow-hidden');
+    }
+
+    menuBtn.addEventListener('click', openMenu);
+    closeBtn.addEventListener('click', closeMenu);
+    drawer.addEventListener('click', (e) => {
+      if (e.target === drawer) closeMenu();
+    });
+    navLinks.forEach(link => link.addEventListener('click', closeMenu));
+  </script>
+</body>
+</html>
