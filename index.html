@@ -4,9 +4,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Job Interview – Local Job & Skill Matching Portal</title>
+  <title>Job Interview – Local Job & Skill Matching Portal for Daily-Wage Workers</title>
   <meta name="description"
-    content="Connecting Workers with Opportunities. Find local jobs or hire skilled workers — all in one place.">
+    content="Find Work. Find Workers. Build Your Future. Connect with trusted local workers and nearby job opportunities.">
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -16,6 +16,7 @@
     rel="stylesheet">
 
   <style>
+    /* ─── RESET & BASE ─── */
     *,
     *::before,
     *::after {
@@ -24,34 +25,44 @@
       padding: 0;
     }
 
+    :root {
+      --navy: #10233F;
+      --green: #12A65A;
+      --dgreen: #087443;
+      --ivory: #F8F7F2;
+      --gold: #D6B875;
+      --white: #FFFFFF;
+    }
+
     body {
       font-family: 'Inter', sans-serif;
-      background: #ffffff;
-      color: #0f2744;
+      background: var(--ivory);
+      color: var(--navy);
       min-height: 100vh;
       display: flex;
       flex-direction: column;
+      overflow-x: hidden;
     }
 
     /* ─── NAVBAR ─── */
     .navbar {
-      background: #ffffff;
-      border-bottom: 1px solid #e5e7eb;
-      padding: 0 2rem;
-      height: 66px;
+      background: var(--white);
+      border-bottom: 1px solid rgba(16, 35, 63, 0.1);
+      padding: 0 2.5rem;
+      height: 68px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       position: sticky;
       top: 0;
-      z-index: 100;
-      gap: 1.5rem;
+      z-index: 200;
+      box-shadow: 0 1px 18px rgba(16, 35, 63, 0.06);
     }
 
     .nav-brand {
       display: flex;
       align-items: center;
-      gap: 0.6rem;
+      gap: 0.65rem;
       text-decoration: none;
       flex-shrink: 0;
     }
@@ -68,23 +79,23 @@
     }
 
     .nav-brand-name {
-      font-size: 1.3rem;
+      font-size: 1.25rem;
       font-weight: 800;
-      color: #0f2744;
+      color: var(--navy);
       letter-spacing: -0.02em;
       line-height: 1;
     }
 
-    .nav-brand-name span {
-      color: #16a34a;
+    .nav-brand-name em {
+      font-style: normal;
+      color: var(--green);
     }
 
     .nav-tagline {
-      font-size: 0.62rem;
-      color: #6b7280;
-      font-weight: 400;
+      font-size: 0.6rem;
+      color: #7a8594;
       margin-top: 2px;
-      letter-spacing: 0.01em;
+      letter-spacing: 0.02em;
     }
 
     .nav-links {
@@ -97,7 +108,7 @@
     .nav-links a {
       font-size: 0.875rem;
       font-weight: 500;
-      color: #374151;
+      color: #4b5563;
       text-decoration: none;
       position: relative;
       padding-bottom: 2px;
@@ -105,12 +116,12 @@
     }
 
     .nav-links a:hover {
-      color: #16a34a;
+      color: var(--green);
     }
 
     .nav-links a.active {
-      color: #15803d;
-      font-weight: 600;
+      color: var(--dgreen);
+      font-weight: 700;
     }
 
     .nav-links a.active::after {
@@ -121,158 +132,97 @@
       transform: translateX(-50%);
       width: 20px;
       height: 2.5px;
-      background: #16a34a;
+      background: var(--green);
       border-radius: 99px;
-    }
-
-    .nav-auth {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      flex-shrink: 0;
-    }
-
-    .btn-login {
-      padding: 0.45rem 1.3rem;
-      border: 1.5px solid #d1d5db;
-      border-radius: 99px;
-      font-size: 0.875rem;
-      font-weight: 600;
-      color: #111827;
-      background: #fff;
-      cursor: pointer;
-      transition: border-color 0.2s, background 0.2s;
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-    }
-
-    .btn-login:hover {
-      border-color: #9ca3af;
-      background: #f9fafb;
-    }
-
-    .btn-signup {
-      padding: 0.45rem 1.4rem;
-      border-radius: 99px;
-      font-size: 0.875rem;
-      font-weight: 700;
-      color: #fff;
-      background: #16a34a;
-      border: none;
-      cursor: pointer;
-      transition: background 0.2s;
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-    }
-
-    .btn-signup:hover {
-      background: #15803d;
     }
 
     /* ─── HERO SECTION ─── */
     .hero {
-      position: relative;
-      overflow: hidden;
-      flex-shrink: 0;
-      min-height: 440px;
-      display: flex;
+      background: var(--white);
+      padding: 3.5rem 2.5rem 3rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
       align-items: center;
-    }
-
-    /* The full-width worker photo as background */
-    .hero-bg {
-      position: absolute;
-      inset: 0;
+      max-width: 1200px;
+      margin: 0 auto;
       width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center top;
     }
 
-    /* White→transparent gradient from left so text stays readable */
-    .hero-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to right,
-          #ffffff 0%,
-          #ffffff 28%,
-          rgba(255, 255, 255, 0.88) 40%,
-          rgba(255, 255, 255, 0.55) 55%,
-          rgba(255, 255, 255, 0.0) 75%);
-    }
-
-    /* Faint top-to-bottom dark gradient at bottom for polish */
-    .hero-overlay-bottom {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to top,
-          rgba(15, 39, 68, 0.06) 0%,
-          transparent 40%);
-    }
-
-    /* Left-side content container */
-    .hero-content {
-      position: relative;
-      z-index: 2;
-      max-width: 520px;
-      padding: 3.5rem 0 3.5rem 3.5rem;
+    /* LEFT CONTENT */
+    .hero-left {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
     }
 
     .hero-heading {
-      font-size: clamp(2rem, 4.5vw, 3.2rem);
+      font-size: clamp(2.2rem, 4vw, 3.3rem);
       font-weight: 900;
-      color: #0f2744;
-      line-height: 1.1;
+      color: var(--navy);
+      line-height: 1.08;
       letter-spacing: -0.03em;
     }
 
     .hero-heading .green {
-      color: #16a34a;
+      color: var(--green);
     }
 
     .hero-sub {
-      margin-top: 1.1rem;
-      font-size: 0.95rem;
-      color: #374151;
-      line-height: 1.65;
-      max-width: 360px;
+      margin-top: 1.2rem;
+      font-size: 0.975rem;
+      color: #4b5563;
+      line-height: 1.7;
+      max-width: 400px;
       font-weight: 400;
     }
 
+    /* CTA Buttons with floating animation */
+    @keyframes floatBtn {
+
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-5px);
+      }
+    }
+
     .hero-btns {
-      margin-top: 2rem;
+      margin-top: 2.2rem;
       display: flex;
       align-items: center;
-      gap: 1rem;
+      gap: 1.1rem;
       flex-wrap: wrap;
     }
 
     .btn-find-job {
       display: inline-flex;
       align-items: center;
-      gap: 0.55rem;
-      padding: 0.75rem 1.6rem;
+      gap: 0.6rem;
+      padding: 0.85rem 1.8rem;
       border-radius: 99px;
-      font-size: 0.875rem;
+      font-size: 0.9rem;
       font-weight: 700;
-      color: #fff;
-      background: #16a34a;
+      color: var(--white);
+      background: linear-gradient(135deg, var(--green) 0%, var(--dgreen) 100%);
       border: none;
       cursor: pointer;
       text-decoration: none;
-      transition: background 0.2s, box-shadow 0.2s;
-      box-shadow: 0 2px 12px rgba(22, 163, 74, 0.25);
+      box-shadow: 0 6px 22px rgba(18, 166, 90, 0.35), 0 2px 8px rgba(18, 166, 90, 0.2);
+      animation: floatBtn 3.2s ease-in-out infinite;
+      transition: box-shadow 0.25s, filter 0.25s;
     }
 
     .btn-find-job:hover {
-      background: #15803d;
-      box-shadow: 0 4px 18px rgba(22, 163, 74, 0.35);
+      box-shadow: 0 10px 30px rgba(18, 166, 90, 0.45);
+      filter: brightness(1.05);
+      animation-play-state: paused;
     }
 
-    .btn-find-job svg,
-    .btn-find-worker svg {
+    .btn-find-job svg {
       width: 18px;
       height: 18px;
       flex-shrink: 0;
@@ -281,192 +231,543 @@
     .btn-find-worker {
       display: inline-flex;
       align-items: center;
-      gap: 0.55rem;
-      padding: 0.72rem 1.4rem;
+      gap: 0.6rem;
+      padding: 0.85rem 1.8rem;
       border-radius: 99px;
-      font-size: 0.875rem;
-      font-weight: 600;
-      color: #111827;
-      background: #ffffff;
-      border: 1.5px solid #d1d5db;
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--navy);
+      background: var(--white);
+      border: 2px solid rgba(16, 35, 63, 0.18);
       cursor: pointer;
       text-decoration: none;
-      transition: border-color 0.2s, background 0.2s;
+      box-shadow: 0 4px 18px rgba(16, 35, 63, 0.12), 0 1px 4px rgba(16, 35, 63, 0.08);
+      animation: floatBtn 3.2s ease-in-out infinite 0.5s;
+      transition: border-color 0.25s, box-shadow 0.25s, background 0.25s;
     }
 
     .btn-find-worker:hover {
-      border-color: #9ca3af;
-      background: #f9fafb;
+      border-color: var(--navy);
+      box-shadow: 0 8px 24px rgba(16, 35, 63, 0.2);
+      background: #f0f4fb;
+      animation-play-state: paused;
     }
 
-    /* Handwritten badge top-right */
-    .handwritten-badge {
+    .btn-find-worker svg {
+      width: 18px;
+      height: 18px;
+      flex-shrink: 0;
+    }
+
+    /* RIGHT IMAGE */
+    .hero-right {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero-img-frame {
+      position: relative;
+      width: 100%;
+      max-width: 480px;
+    }
+
+    /* Decorative background blob */
+    .hero-img-frame::before {
+      content: '';
       position: absolute;
-      top: 2.2rem;
-      right: 2.5rem;
-      z-index: 3;
-      transform: rotate(-5deg);
-      pointer-events: none;
-      text-align: center;
+      inset: -18px -18px -18px -18px;
+      background: linear-gradient(135deg, rgba(18, 166, 90, 0.12) 0%, rgba(214, 184, 117, 0.15) 60%, rgba(16, 35, 63, 0.08) 100%);
+      border-radius: 2.5rem;
+      z-index: 0;
     }
 
-    .handwritten-badge span {
-      font-family: 'Caveat', cursive;
-      font-size: 1.25rem;
-      font-weight: 700;
-      color: #0f2744;
-      line-height: 1.35;
+    .hero-img-frame img {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      height: 420px;
+      object-fit: cover;
+      object-position: top center;
+      border-radius: 2rem;
+      box-shadow:
+        0 25px 60px rgba(16, 35, 63, 0.18),
+        0 8px 24px rgba(16, 35, 63, 0.12),
+        inset 0 1px 0 rgba(255, 255, 255, 0.6);
+      border: 3px solid rgba(255, 255, 255, 0.9);
       display: block;
     }
 
-    .handwritten-badge svg {
-      margin-top: 4px;
-      margin-left: 12px;
-    }
-
-    /* ─── FEATURE BAR ─── */
-    .feature-bar {
-      background: #ffffff;
-      border-top: 1px solid #e5e7eb;
-      padding: 1.6rem 2rem;
-    }
-
-    .feature-grid {
-      max-width: 1100px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 0;
-    }
-
-    .feature-item {
+    /* Floating verified badge on the image */
+    .img-badge {
+      position: absolute;
+      bottom: 20px;
+      left: -20px;
+      z-index: 2;
+      background: var(--white);
+      border-radius: 14px;
+      padding: 0.7rem 1rem;
       display: flex;
       align-items: center;
-      gap: 0.9rem;
-      padding: 0.5rem 1.4rem;
-      border-right: 1px solid #e5e7eb;
+      gap: 0.6rem;
+      box-shadow: 0 8px 28px rgba(16, 35, 63, 0.18);
+      border: 1.5px solid rgba(18, 166, 90, 0.2);
     }
 
-    .feature-item:first-child {
-      padding-left: 0;
-    }
-
-    .feature-item:last-child {
-      border-right: none;
-    }
-
-    .feature-icon-wrap {
-      width: 44px;
-      height: 44px;
-      border-radius: 50%;
+    .img-badge-icon {
+      width: 36px;
+      height: 36px;
+      background: linear-gradient(135deg, var(--green), var(--dgreen));
+      border-radius: 10px;
       display: flex;
       align-items: center;
       justify-content: center;
       flex-shrink: 0;
     }
 
-    .icon-green {
-      background: #16a34a;
+    .img-badge-icon svg {
+      width: 18px;
+      height: 18px;
+      color: #fff;
     }
 
-    .icon-blue {
-      background: #2563eb;
+    .img-badge-text {
+      display: flex;
+      flex-direction: column;
     }
 
-    .icon-amber {
-      background: #f59e0b;
+    .img-badge-text strong {
+      font-size: 0.8rem;
+      font-weight: 800;
+      color: var(--navy);
+      line-height: 1;
     }
 
-    .icon-indigo {
-      background: #6366f1;
+    .img-badge-text span {
+      font-size: 0.68rem;
+      color: #6b7280;
+      margin-top: 1px;
     }
 
-    .feature-icon-wrap svg {
+    /* Second floating tag */
+    .img-tag {
+      position: absolute;
+      top: 20px;
+      right: -16px;
+      z-index: 2;
+      background: linear-gradient(135deg, var(--navy), #1a3a60);
+      border-radius: 12px;
+      padding: 0.5rem 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+      box-shadow: 0 6px 20px rgba(16, 35, 63, 0.28);
+    }
+
+    .img-tag span {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .img-tag svg {
+      width: 14px;
+      height: 14px;
+      color: var(--gold);
+      flex-shrink: 0;
+    }
+
+    /* ─── BENEFIT CARDS ─── */
+    .benefits-section {
+      background: var(--white);
+      border-top: 1px solid rgba(16, 35, 63, 0.07);
+      padding: 2.5rem 2.5rem 2.8rem;
+    }
+
+    .benefits-grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.2rem;
+    }
+
+    .benefit-card {
+      background: var(--ivory);
+      border-radius: 1.2rem;
+      padding: 1.4rem 1.3rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      border: 1.5px solid rgba(16, 35, 63, 0.06);
+      box-shadow: 0 2px 12px rgba(16, 35, 63, 0.05);
+      transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+      cursor: default;
+    }
+
+    .benefit-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 32px rgba(16, 35, 63, 0.12);
+      border-color: rgba(18, 166, 90, 0.25);
+    }
+
+    .benefit-icon {
+      width: 46px;
+      height: 46px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .benefit-icon svg {
       width: 22px;
       height: 22px;
-      color: #ffffff;
+      color: #fff;
     }
 
-    .feature-text h3 {
+    .bi-green {
+      background: linear-gradient(135deg, #16a34a, #087443);
+    }
+
+    .bi-blue {
+      background: linear-gradient(135deg, #2563eb, #1d4ed8);
+    }
+
+    .bi-amber {
+      background: linear-gradient(135deg, #f59e0b, #d97706);
+    }
+
+    .bi-indigo {
+      background: linear-gradient(135deg, #6366f1, #4f46e5);
+    }
+
+    .benefit-text h3 {
       font-size: 0.9rem;
       font-weight: 700;
-      color: #111827;
-      line-height: 1.2;
+      color: var(--navy);
+      line-height: 1.25;
     }
 
-    .feature-text p {
-      font-size: 0.78rem;
+    .benefit-text p {
+      font-size: 0.75rem;
       color: #6b7280;
-      margin-top: 2px;
+      margin-top: 3px;
       font-weight: 400;
+      line-height: 1.4;
+    }
+
+    /* ─── AUTH MODAL ─── */
+    @keyframes modalFadeIn {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes modalSlideUp {
+      from {
+        opacity: 0;
+        transform: scale(0.95) translateY(16px);
+      }
+
+      to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+      }
+    }
+
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 500;
+      background: rgba(16, 35, 63, 0.55);
+      backdrop-filter: blur(6px);
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      animation: modalFadeIn 0.25s ease-out;
+    }
+
+    .modal-overlay.open {
+      display: flex;
+    }
+
+    .modal-box {
+      background: var(--white);
+      border-radius: 1.8rem;
+      width: 100%;
+      max-width: 460px;
+      padding: 2.5rem 2.2rem 2.2rem;
+      box-shadow: 0 32px 80px rgba(16, 35, 63, 0.28), 0 8px 24px rgba(16, 35, 63, 0.1);
+      animation: modalSlideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 1.2rem;
+      right: 1.2rem;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: none;
+      background: var(--ivory);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #6b7280;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .modal-close:hover {
+      background: #e5e7eb;
+      color: var(--navy);
+    }
+
+    .modal-close svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    /* Tab toggle */
+    .modal-tabs {
+      display: flex;
+      background: var(--ivory);
+      border-radius: 12px;
+      padding: 4px;
+      margin-bottom: 1.8rem;
+      gap: 4px;
+    }
+
+    .modal-tab {
+      flex: 1;
+      padding: 0.65rem 0;
+      border: none;
+      border-radius: 9px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.22s;
+      background: transparent;
+      color: #6b7280;
+    }
+
+    .modal-tab.active {
+      background: var(--white);
+      color: var(--navy);
+      box-shadow: 0 2px 8px rgba(16, 35, 63, 0.1);
+    }
+
+    .modal-heading {
+      font-size: 1.55rem;
+      font-weight: 900;
+      color: var(--navy);
+      letter-spacing: -0.02em;
+      margin-bottom: 0.4rem;
+    }
+
+    .modal-sub {
+      font-size: 0.875rem;
+      color: #6b7280;
+      margin-bottom: 1.5rem;
+    }
+
+    /* Role selector */
+    .role-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .role-btn {
+      padding: 0.75rem 0.5rem;
+      border-radius: 12px;
+      border: 2px solid #e5e7eb;
+      background: var(--white);
+      cursor: pointer;
+      text-align: center;
+      transition: all 0.2s;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .role-btn svg {
+      width: 22px;
+      height: 22px;
+      color: #9ca3af;
+      transition: color 0.2s;
+    }
+
+    .role-btn span {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #6b7280;
+      transition: color 0.2s;
+    }
+
+    .role-btn.selected {
+      border-color: var(--green);
+      background: rgba(18, 166, 90, 0.05);
+    }
+
+    .role-btn.selected svg {
+      color: var(--green);
+    }
+
+    .role-btn.selected span {
+      color: var(--dgreen);
+    }
+
+    /* Form fields */
+    .form-view {
+      display: none;
+    }
+
+    .form-view.active {
+      display: block;
+    }
+
+    .field-group {
+      margin-bottom: 1rem;
+    }
+
+    .field-group label {
+      display: block;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: #374151;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 0.4rem;
+    }
+
+    .field-group input,
+    .field-group select {
+      width: 100%;
+      padding: 0.8rem 1rem;
+      border-radius: 12px;
+      border: 1.5px solid #e5e7eb;
+      font-size: 0.9rem;
+      font-family: 'Inter', sans-serif;
+      color: var(--navy);
+      background: var(--white);
+      transition: border-color 0.2s, box-shadow 0.2s;
+      outline: none;
+    }
+
+    .field-group input:focus,
+    .field-group select:focus {
+      border-color: var(--green);
+      box-shadow: 0 0 0 3px rgba(18, 166, 90, 0.12);
+    }
+
+    .submit-btn {
+      width: 100%;
+      padding: 0.95rem;
+      border-radius: 12px;
+      border: none;
+      font-size: 0.95rem;
+      font-weight: 800;
+      color: var(--white);
+      background: linear-gradient(135deg, var(--green) 0%, var(--dgreen) 100%);
+      cursor: pointer;
+      box-shadow: 0 4px 18px rgba(18, 166, 90, 0.3);
+      transition: box-shadow 0.25s, filter 0.25s;
+      margin-top: 1.4rem;
+    }
+
+    .submit-btn:hover {
+      filter: brightness(1.07);
+      box-shadow: 0 6px 24px rgba(18, 166, 90, 0.4);
     }
 
     /* ─── RESPONSIVE ─── */
     @media (max-width: 1024px) {
-      .handwritten-badge {
-        right: 1.5rem;
+      .hero {
+        gap: 2rem;
+        padding: 2.8rem 2rem 2.5rem;
+      }
+
+      .hero-img-frame img {
+        height: 360px;
       }
     }
 
     @media (max-width: 768px) {
+      .navbar {
+        padding: 0 1.25rem;
+      }
+
       .nav-links {
         display: none;
       }
 
-      .hero-content {
-        padding: 2.5rem 1.5rem;
+      .hero {
+        grid-template-columns: 1fr;
+        padding: 2rem 1.25rem 2.5rem;
+        gap: 2.2rem;
+      }
+
+      .hero-right {
+        order: -1;
+      }
+
+      .hero-img-frame {
         max-width: 100%;
       }
 
-      .hero-overlay {
-        background: linear-gradient(to right, #fff 0%, rgba(255, 255, 255, 0.92) 60%, rgba(255, 255, 255, 0.4) 100%);
+      .hero-img-frame img {
+        height: 280px;
       }
 
+      .hero-img-frame::before {
+        inset: -10px;
+      }
+
+      .img-badge {
+        left: -5px;
+        bottom: 14px;
+      }
+
+      .img-tag {
+        right: -5px;
+        top: 14px;
+      }
+
+      .benefits-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .benefits-section {
+        padding: 2rem 1.25rem;
+      }
+    }
+
+    @media (max-width: 520px) {
       .hero-heading {
         font-size: 2rem;
       }
 
-      .handwritten-badge {
-        display: none;
-      }
-
-      .feature-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .feature-item {
-        border-right: none;
-        border-bottom: 1px solid #e5e7eb;
-      }
-
-      .feature-item:nth-child(2n) {}
-
-      .feature-item:last-child {
-        border-bottom: none;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .navbar {
-        padding: 0 1rem;
-      }
-
-      .nav-tagline {
-        display: none;
-      }
-
-      .feature-grid {
+      .benefits-grid {
         grid-template-columns: 1fr;
       }
 
-      .feature-item {
-        border-right: none;
-        border-bottom: 1px solid #e5e7eb;
-        padding: 0.75rem 0;
+      .role-row {
+        grid-template-columns: 1fr 1fr;
       }
 
-      .feature-item:last-child {
-        border-bottom: none;
+      .modal-box {
+        padding: 2rem 1.4rem 1.8rem;
       }
     }
   </style>
@@ -476,24 +777,19 @@
 
   <!-- ═══ NAVBAR ═══ -->
   <header class="navbar">
-
-    <!-- Brand Logo -->
     <a href="#" class="nav-brand">
       <svg class="nav-logo-icon" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <!-- Left figure: Green -->
-        <circle cx="34" cy="30" r="15" fill="#16A34A" />
-        <path d="M10 80C10 60 22 50 36 50C48 50 57 58 59 70H16C12.7 70 10 67.3 10 64V80Z" fill="#16A34A" />
-        <!-- Right figure: Navy -->
-        <circle cx="68" cy="30" r="15" fill="#0F2744" />
-        <path d="M46 80C46 58 58 50 72 50C87 50 96 60 96 80H46Z" fill="#0F2744" />
+        <circle cx="34" cy="30" r="15" fill="#12A65A" />
+        <path d="M10 80C10 60 22 50 36 50C48 50 57 58 59 70H16C12.7 70 10 67.3 10 64V80Z" fill="#12A65A" />
+        <circle cx="68" cy="30" r="15" fill="#10233F" />
+        <path d="M46 80C46 58 58 50 72 50C87 50 96 60 96 80H46Z" fill="#10233F" />
       </svg>
       <div class="nav-brand-text">
-        <span class="nav-brand-name">Job <span>Interview</span></span>
+        <span class="nav-brand-name">Job <em>Interview</em></span>
         <span class="nav-tagline">Local Work &bull; Local People &bull; Stronger Communities</span>
       </div>
     </a>
 
-    <!-- Center Nav Links -->
     <nav>
       <ul class="nav-links">
         <li><a href="#" class="active">Home</a></li>
@@ -503,140 +799,142 @@
       </ul>
     </nav>
 
-    <!-- Auth Buttons -->
-    <div class="nav-auth">
-      <a href="#login" class="btn-login">Login</a>
-      <a href="#signup" class="btn-signup">Sign Up</a>
-    </div>
-
+    <!-- No Login / Sign Up in header as requested -->
   </header>
 
-  <!-- ═══ HERO ═══ -->
-  <section class="hero">
+  <!-- ═══ HERO SECTION ═══ -->
+  <section style="background: var(--white); border-bottom: 1px solid rgba(16,35,63,0.07);">
+    <div class="hero">
 
-    <!-- Full background photo: Indian daily-wage and skilled workers -->
-    <img src="assets/skillconnect-hero.jpg"
-      alt="Indian daily-wage and skilled workers including electricians, plumbers, carpenters and construction workers"
-      class="hero-bg">
+      <!-- LEFT: Headings, description, buttons -->
+      <div class="hero-left">
+        <h1 class="hero-heading">
+          Find Work.<br>
+          Find Workers.<br>
+          <span class="green">Build Your Future.</span>
+        </h1>
 
-    <!-- White gradient overlay (left side) so text is legible -->
-    <div class="hero-overlay"></div>
-    <div class="hero-overlay-bottom"></div>
+        <p class="hero-sub">
+          Connect with trusted local workers and nearby job opportunities based on skills, location, availability and
+          experience.
+        </p>
 
-    <!-- Left-side copy content -->
-    <div class="hero-content">
+        <div class="hero-btns">
+          <!-- Find a Job button: opens modal pre-selecting Job Seeker -->
+          <button class="btn-find-job" onclick="openAuth('seeker')" id="btnFindJob">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+              stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8" />
+              <path d="m21 21-4.35-4.35" />
+            </svg>
+            Find a Job
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+              stroke-linejoin="round" style="width:15px;height:15px;">
+              <path d="M5 12h14M12 5l7 7-7 7" />
+            </svg>
+          </button>
 
-      <!-- Main bold heading: 3 stacked lines -->
-      <h1 class="hero-heading">
-        Find Work.<br>
-        Find Workers.<br>
-        <span class="green">Build Your Future.</span>
-      </h1>
+          <!-- Find a Worker button: opens modal pre-selecting Employer -->
+          <button class="btn-find-worker" onclick="openAuth('employer')" id="btnFindWorker">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round">
+              <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+              <circle cx="9" cy="7" r="4" />
+              <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+              <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+            </svg>
+            Find a Worker
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+              stroke-linejoin="round" style="width:15px;height:15px;">
+              <path d="M5 12h14M12 5l7 7-7 7" />
+            </svg>
+          </button>
+        </div>
+      </div>
 
-      <!-- Subtitle -->
-      <p class="hero-sub">
-        Connect with trusted local workers and nearby job opportunities based on skills, location, availability and
-        experience.
-      </p>
+      <!-- RIGHT: Professionals group photo in a premium frame -->
+      <div class="hero-right">
+        <div class="hero-img-frame">
 
-      <!-- Dual CTA Buttons -->
-      <div class="hero-btns">
-        <!-- Find a Job: Filled green pill with search icon -->
-        <a href="#find-job" class="btn-find-job">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
-            stroke-linejoin="round">
-            <circle cx="11" cy="11" r="8" />
-            <path d="m21 21-4.35-4.35" />
-          </svg>
-          Find a Job
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
-            stroke-linejoin="round" style="width:16px;height:16px;">
-            <path d="M5 12h14M12 5l7 7-7 7" />
-          </svg>
-        </a>
+          <!-- Main group photo (the diverse professionals image) -->
+          <img src="assets/professionals-group.png"
+            alt="Diverse group of skilled professionals and workers — electricians, plumbers, carpenters, construction workers, doctors and more">
 
-        <!-- Find a Worker: Outlined pill -->
-        <a href="#find-worker" class="btn-find-worker">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-            stroke-linejoin="round">
-            <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
-            <circle cx="9" cy="7" r="4" />
-            <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
-            <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-          </svg>
-          Find a Worker
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
-            stroke-linejoin="round" style="width:16px;height:16px;">
-            <path d="M5 12h14M12 5l7 7-7 7" />
-          </svg>
-        </a>
+          <!-- Floating verified badge bottom-left -->
+          <div class="img-badge">
+            <div class="img-badge-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                <polyline points="9 12 11 14 15 10" />
+              </svg>
+            </div>
+            <div class="img-badge-text">
+              <strong>Verified Workers</strong>
+              <span>Trusted &amp; Local</span>
+            </div>
+          </div>
+
+          <!-- Floating active tag top-right -->
+          <div class="img-tag">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <circle cx="12" cy="12" r="5" />
+            </svg>
+            <span>1,200+ Active Profiles</span>
+          </div>
+
+        </div>
       </div>
 
     </div>
-
-    <!-- Handwritten badge: top-right -->
-    <div class="handwritten-badge">
-      <span>Local Skills<br>Create Stronger<br>Communities</span>
-      <!-- Decorative hand-drawn arrow flourish -->
-      <svg width="90" height="36" viewBox="0 0 90 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M5 10 Q 40 32 78 16" stroke="#0f2744" stroke-width="2" stroke-linecap="round" fill="none" />
-        <path d="M68 20 L78 16 L74 6" stroke="#0f2744" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-          fill="none" />
-      </svg>
-    </div>
-
   </section>
 
-  <!-- ═══ FEATURE BAR ═══ -->
-  <section class="feature-bar">
-    <div class="feature-grid">
+  <!-- ═══ BENEFIT CARDS ═══ -->
+  <section class="benefits-section">
+    <div class="benefits-grid">
 
-      <!-- 1. Local Opportunities -->
-      <div class="feature-item">
-        <div class="feature-icon-wrap icon-green">
+      <div class="benefit-card">
+        <div class="benefit-icon bi-green">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
             stroke-linejoin="round">
             <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
             <circle cx="12" cy="10" r="3" />
           </svg>
         </div>
-        <div class="feature-text">
+        <div class="benefit-text">
           <h3>Local Opportunities</h3>
           <p>Jobs and workers near you</p>
         </div>
       </div>
 
-      <!-- 2. Trusted Profiles -->
-      <div class="feature-item">
-        <div class="feature-icon-wrap icon-blue">
+      <div class="benefit-card">
+        <div class="benefit-icon bi-blue">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
             stroke-linejoin="round">
             <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
             <polyline points="9 12 11 14 15 10" />
           </svg>
         </div>
-        <div class="feature-text">
+        <div class="benefit-text">
           <h3>Trusted Profiles</h3>
           <p>Verified and reliable</p>
         </div>
       </div>
 
-      <!-- 3. Quick & Easy -->
-      <div class="feature-item">
-        <div class="feature-icon-wrap icon-amber">
+      <div class="benefit-card">
+        <div class="benefit-icon bi-amber">
           <svg viewBox="0 0 24 24" fill="currentColor" stroke="none">
             <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
           </svg>
         </div>
-        <div class="feature-text">
+        <div class="benefit-text">
           <h3>Quick &amp; Easy</h3>
           <p>Simple and fast process</p>
         </div>
       </div>
 
-      <!-- 4. Build Communities -->
-      <div class="feature-item">
-        <div class="feature-icon-wrap icon-indigo">
+      <div class="benefit-card">
+        <div class="benefit-icon bi-indigo">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
             stroke-linejoin="round">
             <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
@@ -645,7 +943,7 @@
             <path d="M16 3.13a4 4 0 0 1 0 7.75" />
           </svg>
         </div>
-        <div class="feature-text">
+        <div class="benefit-text">
           <h3>Build Communities</h3>
           <p>Support local employment</p>
         </div>
@@ -653,6 +951,195 @@
 
     </div>
   </section>
+
+  <!-- ═══ AUTH MODAL ═══ -->
+  <div class="modal-overlay" id="authModal" onclick="handleOverlayClick(event)">
+    <div class="modal-box" id="authBox">
+
+      <!-- Close button -->
+      <button class="modal-close" onclick="closeAuth()" aria-label="Close">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+          stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18" />
+          <line x1="6" y1="6" x2="18" y2="18" />
+        </svg>
+      </button>
+
+      <!-- Login / Sign Up tabs -->
+      <div class="modal-tabs">
+        <button class="modal-tab active" id="tabLogin" onclick="switchTab('login')">Login</button>
+        <button class="modal-tab" id="tabSignup" onclick="switchTab('signup')">Sign Up</button>
+      </div>
+
+      <!-- LOGIN FORM -->
+      <div class="form-view active" id="formLogin">
+        <p class="modal-heading">Welcome Back</p>
+        <p class="modal-sub">Login to access your <span id="loginRoleLabel">job seeker</span> dashboard.</p>
+
+        <p
+          style="font-size:0.78rem;font-weight:700;color:#374151;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:0.65rem;">
+          I am a</p>
+        <div class="role-row" id="loginRoleRow">
+          <button class="role-btn" id="loginSeeker" onclick="selectRole('login','seeker')">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round">
+              <circle cx="12" cy="8" r="4" />
+              <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" />
+            </svg>
+            <span>Job Seeker</span>
+          </button>
+          <button class="role-btn" id="loginEmployer" onclick="selectRole('login','employer')">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round">
+              <rect x="2" y="7" width="20" height="14" rx="2" />
+              <path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2" />
+            </svg>
+            <span>Employer</span>
+          </button>
+        </div>
+
+        <form onsubmit="event.preventDefault(); handleSubmit('login');">
+          <div class="field-group">
+            <label>Mobile or Email</label>
+            <input type="text" required placeholder="Enter registered mobile or email">
+          </div>
+          <div class="field-group">
+            <label>Password / OTP</label>
+            <input type="password" required placeholder="Enter your password or OTP">
+          </div>
+          <button type="submit" class="submit-btn">Login →</button>
+        </form>
+        <p style="text-align:center;margin-top:1rem;font-size:0.82rem;color:#6b7280;">
+          Don't have an account?
+          <button onclick="switchTab('signup')"
+            style="background:none;border:none;color:var(--green);font-weight:700;cursor:pointer;font-size:0.82rem;">Sign
+            Up</button>
+        </p>
+      </div>
+
+      <!-- SIGN UP FORM -->
+      <div class="form-view" id="formSignup">
+        <p class="modal-heading">Create Your Account</p>
+        <p class="modal-sub">Join as a <span id="signupRoleLabel">job seeker</span> and get started today.</p>
+
+        <p
+          style="font-size:0.78rem;font-weight:700;color:#374151;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:0.65rem;">
+          I am a</p>
+        <div class="role-row" id="signupRoleRow">
+          <button class="role-btn" id="signupSeeker" onclick="selectRole('signup','seeker')">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round">
+              <circle cx="12" cy="8" r="4" />
+              <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" />
+            </svg>
+            <span>Job Seeker</span>
+          </button>
+          <button class="role-btn" id="signupEmployer" onclick="selectRole('signup','employer')">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round">
+              <rect x="2" y="7" width="20" height="14" rx="2" />
+              <path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2" />
+            </svg>
+            <span>Employer</span>
+          </button>
+        </div>
+
+        <form onsubmit="event.preventDefault(); handleSubmit('signup');">
+          <div class="field-group">
+            <label>Full Name</label>
+            <input type="text" required placeholder="Enter your full name">
+          </div>
+          <div class="field-group">
+            <label>Mobile Number</label>
+            <input type="tel" required placeholder="10-digit mobile number">
+          </div>
+          <div class="field-group">
+            <label>Email (optional)</label>
+            <input type="email" placeholder="your@email.com">
+          </div>
+          <div class="field-group">
+            <label>Create Password</label>
+            <input type="password" required placeholder="Minimum 6 characters">
+          </div>
+          <button type="submit" class="submit-btn">Create Account →</button>
+        </form>
+        <p style="text-align:center;margin-top:1rem;font-size:0.82rem;color:#6b7280;">
+          Already have an account?
+          <button onclick="switchTab('login')"
+            style="background:none;border:none;color:var(--green);font-weight:700;cursor:pointer;font-size:0.82rem;">Login</button>
+        </p>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    // Current selected role state
+    let currentTab = 'login';
+    let loginRole = 'seeker';
+    let signupRole = 'seeker';
+
+    function openAuth(role) {
+      loginRole = role;
+      signupRole = role;
+      selectRole('login', role);
+      selectRole('signup', role);
+      updateRoleLabels();
+      document.getElementById('authModal').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeAuth() {
+      document.getElementById('authModal').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    function handleOverlayClick(e) {
+      if (e.target === document.getElementById('authModal')) closeAuth();
+    }
+
+    function switchTab(tab) {
+      currentTab = tab;
+      document.getElementById('tabLogin').classList.toggle('active', tab === 'login');
+      document.getElementById('tabSignup').classList.toggle('active', tab === 'signup');
+      document.getElementById('formLogin').classList.toggle('active', tab === 'login');
+      document.getElementById('formSignup').classList.toggle('active', tab === 'signup');
+    }
+
+    function selectRole(form, role) {
+      if (form === 'login') {
+        loginRole = role;
+        document.getElementById('loginSeeker').classList.toggle('selected', role === 'seeker');
+        document.getElementById('loginEmployer').classList.toggle('selected', role === 'employer');
+      } else {
+        signupRole = role;
+        document.getElementById('signupSeeker').classList.toggle('selected', role === 'seeker');
+        document.getElementById('signupEmployer').classList.toggle('selected', role === 'employer');
+      }
+      updateRoleLabels();
+    }
+
+    function updateRoleLabels() {
+      const lr = loginRole === 'seeker' ? 'job seeker' : 'employer';
+      const sr = signupRole === 'seeker' ? 'job seeker' : 'employer';
+      document.getElementById('loginRoleLabel').textContent = lr;
+      document.getElementById('signupRoleLabel').textContent = sr;
+    }
+
+    function handleSubmit(type) {
+      const role = type === 'login' ? loginRole : signupRole;
+      const msg = type === 'login'
+        ? `Login successful as ${role === 'seeker' ? 'Job Seeker' : 'Employer'}!`
+        : `Account created successfully as ${role === 'seeker' ? 'Job Seeker' : 'Employer'}!`;
+      alert(msg);
+      closeAuth();
+    }
+
+    // Keyboard escape to close modal
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeAuth();
+    });
+  </script>
 
 </body>
 
