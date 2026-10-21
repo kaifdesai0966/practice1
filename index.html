@@ -1,398 +1,659 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Job Interview – Local Job &amp; Skill Matching Portal for Daily-Wage Workers</title>
-  <meta name="description" content="Connecting Workers with Opportunities. Find local jobs or hire skilled workers — all in one place.">
+  <title>Job Interview – Local Job & Skill Matching Portal</title>
+  <meta name="description"
+    content="Connecting Workers with Opportunities. Find local jobs or hire skilled workers — all in one place.">
 
-  <!-- Google Fonts: Plus Jakarta Sans & Inter -->
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-
-  <!-- Tailwind CSS CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: {
-            sans: ['"Plus Jakarta Sans"', 'Inter', 'sans-serif'],
-          },
-          colors: {
-            brandNavy: '#0f172a',
-            brandTeal: {
-              DEFAULT: '#0f766e',
-              dark: '#115e59',
-              light: '#f0fdfa'
-            }
-          }
-        }
-      }
-    }
-  </script>
-
-  <!-- Lucide Icons -->
-  <script src="https://unpkg.com/lucide@latest"></script>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Inter:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
 
   <style>
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
-    @keyframes scaleIn {
-      from { opacity: 0; transform: scale(0.96); }
-      to { opacity: 1; transform: scale(1); }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #ffffff;
+      color: #0f2744;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
     }
-    .animate-fade-in {
-      animation: fadeIn 0.25s ease-out forwards;
+
+    /* ─── NAVBAR ─── */
+    .navbar {
+      background: #ffffff;
+      border-bottom: 1px solid #e5e7eb;
+      padding: 0 2rem;
+      height: 66px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      gap: 1.5rem;
     }
-    .animate-scale-in {
-      animation: scaleIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      text-decoration: none;
+      flex-shrink: 0;
+    }
+
+    .nav-logo-icon {
+      width: 44px;
+      height: 44px;
+      flex-shrink: 0;
+    }
+
+    .nav-brand-text {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .nav-brand-name {
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: #0f2744;
+      letter-spacing: -0.02em;
+      line-height: 1;
+    }
+
+    .nav-brand-name span {
+      color: #16a34a;
+    }
+
+    .nav-tagline {
+      font-size: 0.62rem;
+      color: #6b7280;
+      font-weight: 400;
+      margin-top: 2px;
+      letter-spacing: 0.01em;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: #374151;
+      text-decoration: none;
+      position: relative;
+      padding-bottom: 2px;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: #16a34a;
+    }
+
+    .nav-links a.active {
+      color: #15803d;
+      font-weight: 600;
+    }
+
+    .nav-links a.active::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 20px;
+      height: 2.5px;
+      background: #16a34a;
+      border-radius: 99px;
+    }
+
+    .nav-auth {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      flex-shrink: 0;
+    }
+
+    .btn-login {
+      padding: 0.45rem 1.3rem;
+      border: 1.5px solid #d1d5db;
+      border-radius: 99px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: #111827;
+      background: #fff;
+      cursor: pointer;
+      transition: border-color 0.2s, background 0.2s;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .btn-login:hover {
+      border-color: #9ca3af;
+      background: #f9fafb;
+    }
+
+    .btn-signup {
+      padding: 0.45rem 1.4rem;
+      border-radius: 99px;
+      font-size: 0.875rem;
+      font-weight: 700;
+      color: #fff;
+      background: #16a34a;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .btn-signup:hover {
+      background: #15803d;
+    }
+
+    /* ─── HERO SECTION ─── */
+    .hero {
+      position: relative;
+      overflow: hidden;
+      flex-shrink: 0;
+      min-height: 440px;
+      display: flex;
+      align-items: center;
+    }
+
+    /* The full-width worker photo as background */
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+    }
+
+    /* White→transparent gradient from left so text stays readable */
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to right,
+          #ffffff 0%,
+          #ffffff 28%,
+          rgba(255, 255, 255, 0.88) 40%,
+          rgba(255, 255, 255, 0.55) 55%,
+          rgba(255, 255, 255, 0.0) 75%);
+    }
+
+    /* Faint top-to-bottom dark gradient at bottom for polish */
+    .hero-overlay-bottom {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top,
+          rgba(15, 39, 68, 0.06) 0%,
+          transparent 40%);
+    }
+
+    /* Left-side content container */
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 520px;
+      padding: 3.5rem 0 3.5rem 3.5rem;
+    }
+
+    .hero-heading {
+      font-size: clamp(2rem, 4.5vw, 3.2rem);
+      font-weight: 900;
+      color: #0f2744;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+    }
+
+    .hero-heading .green {
+      color: #16a34a;
+    }
+
+    .hero-sub {
+      margin-top: 1.1rem;
+      font-size: 0.95rem;
+      color: #374151;
+      line-height: 1.65;
+      max-width: 360px;
+      font-weight: 400;
+    }
+
+    .hero-btns {
+      margin-top: 2rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-find-job {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      padding: 0.75rem 1.6rem;
+      border-radius: 99px;
+      font-size: 0.875rem;
+      font-weight: 700;
+      color: #fff;
+      background: #16a34a;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.2s, box-shadow 0.2s;
+      box-shadow: 0 2px 12px rgba(22, 163, 74, 0.25);
+    }
+
+    .btn-find-job:hover {
+      background: #15803d;
+      box-shadow: 0 4px 18px rgba(22, 163, 74, 0.35);
+    }
+
+    .btn-find-job svg,
+    .btn-find-worker svg {
+      width: 18px;
+      height: 18px;
+      flex-shrink: 0;
+    }
+
+    .btn-find-worker {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      padding: 0.72rem 1.4rem;
+      border-radius: 99px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: #111827;
+      background: #ffffff;
+      border: 1.5px solid #d1d5db;
+      cursor: pointer;
+      text-decoration: none;
+      transition: border-color 0.2s, background 0.2s;
+    }
+
+    .btn-find-worker:hover {
+      border-color: #9ca3af;
+      background: #f9fafb;
+    }
+
+    /* Handwritten badge top-right */
+    .handwritten-badge {
+      position: absolute;
+      top: 2.2rem;
+      right: 2.5rem;
+      z-index: 3;
+      transform: rotate(-5deg);
+      pointer-events: none;
+      text-align: center;
+    }
+
+    .handwritten-badge span {
+      font-family: 'Caveat', cursive;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #0f2744;
+      line-height: 1.35;
+      display: block;
+    }
+
+    .handwritten-badge svg {
+      margin-top: 4px;
+      margin-left: 12px;
+    }
+
+    /* ─── FEATURE BAR ─── */
+    .feature-bar {
+      background: #ffffff;
+      border-top: 1px solid #e5e7eb;
+      padding: 1.6rem 2rem;
+    }
+
+    .feature-grid {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+    }
+
+    .feature-item {
+      display: flex;
+      align-items: center;
+      gap: 0.9rem;
+      padding: 0.5rem 1.4rem;
+      border-right: 1px solid #e5e7eb;
+    }
+
+    .feature-item:first-child {
+      padding-left: 0;
+    }
+
+    .feature-item:last-child {
+      border-right: none;
+    }
+
+    .feature-icon-wrap {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .icon-green {
+      background: #16a34a;
+    }
+
+    .icon-blue {
+      background: #2563eb;
+    }
+
+    .icon-amber {
+      background: #f59e0b;
+    }
+
+    .icon-indigo {
+      background: #6366f1;
+    }
+
+    .feature-icon-wrap svg {
+      width: 22px;
+      height: 22px;
+      color: #ffffff;
+    }
+
+    .feature-text h3 {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: #111827;
+      line-height: 1.2;
+    }
+
+    .feature-text p {
+      font-size: 0.78rem;
+      color: #6b7280;
+      margin-top: 2px;
+      font-weight: 400;
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 1024px) {
+      .handwritten-badge {
+        right: 1.5rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+
+      .hero-content {
+        padding: 2.5rem 1.5rem;
+        max-width: 100%;
+      }
+
+      .hero-overlay {
+        background: linear-gradient(to right, #fff 0%, rgba(255, 255, 255, 0.92) 60%, rgba(255, 255, 255, 0.4) 100%);
+      }
+
+      .hero-heading {
+        font-size: 2rem;
+      }
+
+      .handwritten-badge {
+        display: none;
+      }
+
+      .feature-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .feature-item {
+        border-right: none;
+        border-bottom: 1px solid #e5e7eb;
+      }
+
+      .feature-item:nth-child(2n) {}
+
+      .feature-item:last-child {
+        border-bottom: none;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .navbar {
+        padding: 0 1rem;
+      }
+
+      .nav-tagline {
+        display: none;
+      }
+
+      .feature-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .feature-item {
+        border-right: none;
+        border-bottom: 1px solid #e5e7eb;
+        padding: 0.75rem 0;
+      }
+
+      .feature-item:last-child {
+        border-bottom: none;
+      }
     }
   </style>
 </head>
-<body class="bg-[#fcfbfa] text-[#0f172a] font-sans min-h-screen flex flex-col justify-between selection:bg-teal-100 selection:text-teal-900 antialiased relative overflow-x-hidden">
 
-  <!-- Ambient Background Light Glows -->
-  <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[620px] pointer-events-none overflow-hidden -z-10">
-    <div class="absolute top-[-140px] left-1/2 -translate-x-1/2 w-[780px] h-[480px] bg-gradient-to-tr from-teal-200/25 via-cyan-100/30 to-amber-100/20 rounded-full blur-3xl opacity-70"></div>
-    <div class="absolute top-[260px] right-[-100px] w-[420px] h-[340px] bg-teal-100/25 rounded-full blur-3xl"></div>
-  </div>
+<body>
 
-  <!-- Header: Clean, minimal, and professionally aligned -->
-  <header class="w-full sticky top-0 z-40 bg-white/80 backdrop-blur-xl border-b border-stone-200/70 transition-all shadow-[0_2px_15px_-3px_rgba(0,0,0,0.03)]">
-    <div class="max-w-6xl mx-auto px-6 sm:px-10 lg:px-12 h-20 flex items-center justify-between">
-      
-      <!-- Top-left: Text logo "Job Interview" -->
-      <a href="#" onclick="openModal('none'); return false;" class="flex items-center gap-2.5 group cursor-pointer">
-        <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-teal-700 to-[#0f172a] flex items-center justify-center text-white shadow-sm shadow-teal-900/20 group-hover:scale-105 transition-transform">
-          <i data-lucide="sparkles" class="w-4 h-4 text-teal-200"></i>
-        </div>
-        <span class="text-2xl font-extrabold tracking-tight text-[#0f172a] group-hover:text-teal-800 transition-colors">
-          Job Interview
-        </span>
-      </a>
+  <!-- ═══ NAVBAR ═══ -->
+  <header class="navbar">
 
-      <!-- Top-right: Login and Sign Up options -->
-      <div class="flex items-center gap-3 sm:gap-4">
-        <button onclick="openModal('login')" class="px-4 sm:px-5 py-2.5 rounded-xl text-sm font-semibold text-stone-700 hover:text-[#0f172a] hover:bg-stone-100/80 transition-all cursor-pointer">
-          Login
-        </button>
-        <button onclick="openModal('signup')" class="px-5 sm:px-6 py-2.5 rounded-xl text-sm font-semibold text-white bg-gradient-to-r from-teal-700 to-teal-800 hover:from-teal-800 hover:to-teal-900 shadow-md shadow-teal-800/20 hover:shadow-lg hover:shadow-teal-800/25 transition-all transform hover:-translate-y-0.5 cursor-pointer">
-          Sign Up
-        </button>
+    <!-- Brand Logo -->
+    <a href="#" class="nav-brand">
+      <svg class="nav-logo-icon" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Left figure: Green -->
+        <circle cx="34" cy="30" r="15" fill="#16A34A" />
+        <path d="M10 80C10 60 22 50 36 50C48 50 57 58 59 70H16C12.7 70 10 67.3 10 64V80Z" fill="#16A34A" />
+        <!-- Right figure: Navy -->
+        <circle cx="68" cy="30" r="15" fill="#0F2744" />
+        <path d="M46 80C46 58 58 50 72 50C87 50 96 60 96 80H46Z" fill="#0F2744" />
+      </svg>
+      <div class="nav-brand-text">
+        <span class="nav-brand-name">Job <span>Interview</span></span>
+        <span class="nav-tagline">Local Work &bull; Local People &bull; Stronger Communities</span>
       </div>
+    </a>
 
+    <!-- Center Nav Links -->
+    <nav>
+      <ul class="nav-links">
+        <li><a href="#" class="active">Home</a></li>
+        <li><a href="#find-job">Find Jobs</a></li>
+        <li><a href="#find-worker">Find Workers</a></li>
+        <li><a href="#about">About</a></li>
+      </ul>
+    </nav>
+
+    <!-- Auth Buttons -->
+    <div class="nav-auth">
+      <a href="#login" class="btn-login">Login</a>
+      <a href="#signup" class="btn-signup">Sign Up</a>
     </div>
+
   </header>
 
-  <!-- Main Section -->
-  <main class="flex-grow flex flex-col justify-center py-10 sm:py-14 lg:py-20 relative">
-    <div class="max-w-6xl mx-auto px-6 sm:px-10 lg:px-12 w-full">
-      
-      <!-- Hero Header Area -->
-      <div class="text-center max-w-3xl mx-auto">
-        <!-- Subtle Trust Badge -->
-        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/90 backdrop-blur-md border border-stone-200 shadow-sm text-xs font-semibold text-stone-700 mb-6">
-          <span class="w-2 h-2 rounded-full bg-teal-600 animate-pulse"></span>
-          <span>India's Local Daily-Wage &amp; Skill Matching Portal</span>
-        </div>
+  <!-- ═══ HERO ═══ -->
+  <section class="hero">
 
-        <!-- Main Heading -->
-        <h1 class="text-4xl sm:text-5xl lg:text-[3.5rem] font-extrabold text-[#0f172a] tracking-tight leading-[1.12]">
-          Connecting Workers with Opportunities
-        </h1>
+    <!-- Full background photo: Indian daily-wage and skilled workers -->
+    <img src="assets/skillconnect-hero.jpg"
+      alt="Indian daily-wage and skilled workers including electricians, plumbers, carpenters and construction workers"
+      class="hero-bg">
 
-        <!-- Subtitle -->
-        <p class="mt-5 text-base sm:text-lg lg:text-xl text-stone-600 leading-relaxed font-normal max-w-2xl mx-auto">
-          Find local jobs or hire skilled workers — all in one place.
-        </p>
-      </div>
+    <!-- White gradient overlay (left side) so text is legible -->
+    <div class="hero-overlay"></div>
+    <div class="hero-overlay-bottom"></div>
 
-      <!-- Main Section: High-Quality Realistic Photograph of Indian Workers -->
-      <div class="mt-10 sm:mt-12 max-w-5xl mx-auto">
-        <div class="relative rounded-3xl p-2 bg-gradient-to-b from-white/90 via-white/50 to-white/90 border border-stone-200/80 shadow-[0_20px_50px_rgba(15,23,42,0.08)] backdrop-blur-md group">
-          <div class="relative rounded-2xl overflow-hidden bg-stone-900 aspect-[16/9] sm:aspect-[21/9] max-h-[460px]">
-            <img
-              src="assets/skillconnect-hero.jpg"
-              alt="Authentic photograph of Indian daily-wage and semi-skilled workers including electricians, plumbers, carpenters, painters, and construction workers"
-              class="w-full h-full object-cover object-center transform group-hover:scale-[1.02] transition-transform duration-700"
-            >
-            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent pointer-events-none"></div>
-            
-            <!-- Floating Glassmorphic Verification Pill -->
-            <div class="absolute bottom-4 left-4 sm:bottom-6 sm:left-6 flex items-center gap-2 bg-white/90 backdrop-blur-md border border-white/40 text-stone-900 text-xs sm:text-sm font-semibold px-4 py-2 rounded-full shadow-lg">
-              <i data-lucide="shield-check" class="w-4 h-4 text-teal-700"></i>
-              <span>Electricians &bull; Plumbers &bull; Carpenters &bull; Painters &bull; Masons</span>
-            </div>
-          </div>
-        </div>
-      </div>
+    <!-- Left-side copy content -->
+    <div class="hero-content">
 
-      <!-- Two Main Options: Side-by-Side Cards -->
-      <div class="mt-14 sm:mt-18 max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
-        
-        <!-- Card 1 — Find Job -->
-        <div class="relative bg-white/90 backdrop-blur-md rounded-3xl border border-stone-200/90 shadow-[0_10px_30px_rgba(0,0,0,0.04)] hover:shadow-[0_25px_50px_-12px_rgba(13,148,136,0.18)] hover:border-teal-600/40 transition-all duration-300 flex flex-col overflow-hidden group hover:-translate-y-1.5">
-          
-          <!-- Image Container with Glass Tag -->
-          <div class="relative h-64 sm:h-72 overflow-hidden bg-stone-100">
-            <img
-              src="assets/find-job-worker.jpg"
-              alt="A skilled Indian worker ready for employment with tools in workshop"
-              class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700"
-            >
-            <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
-            <div class="absolute top-4 left-4 bg-teal-900/80 backdrop-blur-md border border-white/20 text-white text-xs font-semibold px-3.5 py-1.5 rounded-full shadow-md flex items-center gap-1.5">
-              <i data-lucide="user-check" class="w-3.5 h-3.5 text-teal-300"></i>
-              <span>For Job Seekers</span>
-            </div>
-          </div>
+      <!-- Main bold heading: 3 stacked lines -->
+      <h1 class="hero-heading">
+        Find Work.<br>
+        Find Workers.<br>
+        <span class="green">Build Your Future.</span>
+      </h1>
 
-          <!-- Card Body -->
-          <div class="p-7 sm:p-9 flex flex-col flex-grow justify-between bg-gradient-to-b from-white/95 to-white">
-            <div>
-              <h2 class="text-2xl sm:text-[1.75rem] font-bold text-[#0f172a] group-hover:text-teal-700 transition-colors tracking-tight">
-                Find Job
-              </h2>
-              <p class="mt-3 text-stone-600 text-base leading-relaxed">
-                Discover nearby job opportunities that match your skills.
-              </p>
-            </div>
+      <!-- Subtitle -->
+      <p class="hero-sub">
+        Connect with trusted local workers and nearby job opportunities based on skills, location, availability and
+        experience.
+      </p>
 
-            <div class="mt-8 pt-2">
-              <button
-                onclick="openModal('find-job')"
-                class="w-full inline-flex items-center justify-center gap-3 px-7 py-4 rounded-2xl bg-teal-700 hover:bg-teal-800 text-white font-semibold text-base transition-all shadow-md shadow-teal-700/20 hover:shadow-xl hover:shadow-teal-700/30 group/btn cursor-pointer"
-              >
-                <i data-lucide="briefcase" class="w-5 h-5 text-teal-200"></i>
-                <span>Find Job</span>
-                <i data-lucide="arrow-right" class="w-4 h-4 text-teal-200 group-hover/btn:translate-x-1 transition-transform"></i>
-              </button>
-            </div>
-          </div>
-        </div>
+      <!-- Dual CTA Buttons -->
+      <div class="hero-btns">
+        <!-- Find a Job: Filled green pill with search icon -->
+        <a href="#find-job" class="btn-find-job">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+            stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8" />
+            <path d="m21 21-4.35-4.35" />
+          </svg>
+          Find a Job
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+            stroke-linejoin="round" style="width:16px;height:16px;">
+            <path d="M5 12h14M12 5l7 7-7 7" />
+          </svg>
+        </a>
 
-        <!-- Card 2 — Find Worker -->
-        <div class="relative bg-white/90 backdrop-blur-md rounded-3xl border border-stone-200/90 shadow-[0_10px_30px_rgba(0,0,0,0.04)] hover:shadow-[0_25px_50px_-12px_rgba(15,23,42,0.18)] hover:border-slate-800/40 transition-all duration-300 flex flex-col overflow-hidden group hover:-translate-y-1.5">
-          
-          <!-- Image Container with Glass Tag -->
-          <div class="relative h-64 sm:h-72 overflow-hidden bg-stone-100">
-            <img
-              src="assets/find-worker-employer.jpg"
-              alt="An employer hiring a worker or a skilled professional at work"
-              class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700"
-            >
-            <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
-            <div class="absolute top-4 left-4 bg-slate-900/80 backdrop-blur-md border border-white/20 text-white text-xs font-semibold px-3.5 py-1.5 rounded-full shadow-md flex items-center gap-1.5">
-              <i data-lucide="building-2" class="w-3.5 h-3.5 text-slate-300"></i>
-              <span>For Employers &amp; Contractors</span>
-            </div>
-          </div>
-
-          <!-- Card Body -->
-          <div class="p-7 sm:p-9 flex flex-col flex-grow justify-between bg-gradient-to-b from-white/95 to-white">
-            <div>
-              <h2 class="text-2xl sm:text-[1.75rem] font-bold text-[#0f172a] group-hover:text-teal-700 transition-colors tracking-tight">
-                Find Worker
-              </h2>
-              <p class="mt-3 text-stone-600 text-base leading-relaxed">
-                Find and hire reliable local workers for your needs.
-              </p>
-            </div>
-
-            <div class="mt-8 pt-2">
-              <button
-                onclick="openModal('find-worker')"
-                class="w-full inline-flex items-center justify-center gap-3 px-7 py-4 rounded-2xl bg-[#0f172a] hover:bg-[#1e293b] text-white font-semibold text-base transition-all shadow-md shadow-slate-900/20 hover:shadow-xl hover:shadow-slate-900/30 group/btn cursor-pointer"
-              >
-                <i data-lucide="users" class="w-5 h-5 text-slate-300"></i>
-                <span>Find Worker</span>
-                <i data-lucide="arrow-right" class="w-4 h-4 text-slate-300 group-hover/btn:translate-x-1 transition-transform"></i>
-              </button>
-            </div>
-          </div>
-        </div>
-
+        <!-- Find a Worker: Outlined pill -->
+        <a href="#find-worker" class="btn-find-worker">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round">
+            <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+            <circle cx="9" cy="7" r="4" />
+            <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+            <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+          </svg>
+          Find a Worker
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+            stroke-linejoin="round" style="width:16px;height:16px;">
+            <path d="M5 12h14M12 5l7 7-7 7" />
+          </svg>
+        </a>
       </div>
 
     </div>
-  </main>
 
-  <!-- Clean, minimal footer -->
-  <footer class="w-full bg-white/80 backdrop-blur-md border-t border-stone-200/80 py-6 text-xs text-stone-500">
-    <div class="max-w-6xl mx-auto px-6 sm:px-10 lg:px-12 flex flex-col sm:flex-row items-center justify-between gap-3">
-      <div class="flex items-center gap-2">
-        <span class="font-bold text-stone-700">Job Interview</span>
-        <span>&bull;</span>
-        <span>Local Job &amp; Skill Matching Portal for Daily-Wage Workers</span>
-      </div>
-      <span>&copy; 2026 Job Interview. All rights reserved.</span>
+    <!-- Handwritten badge: top-right -->
+    <div class="handwritten-badge">
+      <span>Local Skills<br>Create Stronger<br>Communities</span>
+      <!-- Decorative hand-drawn arrow flourish -->
+      <svg width="90" height="36" viewBox="0 0 90 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M5 10 Q 40 32 78 16" stroke="#0f2744" stroke-width="2" stroke-linecap="round" fill="none" />
+        <path d="M68 20 L78 16 L74 6" stroke="#0f2744" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+          fill="none" />
+      </svg>
     </div>
-  </footer>
 
-  <!-- Glassmorphic Modal for Interactive Routes -->
-  <div id="modalOverlay" class="fixed inset-0 z-50 hidden items-center justify-center p-4 sm:p-6 bg-slate-900/50 backdrop-blur-sm animate-fade-in">
-    <div class="relative w-full max-w-xl bg-white/95 backdrop-blur-2xl rounded-3xl border border-stone-200 shadow-2xl p-6 sm:p-8 overflow-hidden animate-scale-in">
-      
-      <!-- Modal Header -->
-      <div class="flex items-center justify-between pb-5 border-b border-stone-100">
-        <div class="flex items-center gap-2.5">
-          <div id="modalIconBox" class="w-8 h-8 rounded-lg bg-teal-100 text-teal-800 flex items-center justify-center">
-            <i id="modalIcon" data-lucide="sparkles" class="w-4 h-4"></i>
-          </div>
-          <h3 id="modalTitle" class="text-xl font-bold text-[#0f172a]"></h3>
-        </div>
-        <button onclick="closeModal()" class="p-2 text-stone-400 hover:text-stone-700 rounded-full hover:bg-stone-100 transition-colors">
-          <i data-lucide="x" class="w-5 h-5"></i>
-        </button>
-      </div>
+  </section>
 
-      <!-- Modal Content Views -->
-      <div id="modalFindJob" class="hidden mt-5 space-y-3">
-        <p class="text-sm text-stone-600 mb-4">Discover verified active requirements near your current location:</p>
-        <div class="p-4 rounded-2xl bg-stone-50 border border-stone-200/80 flex items-center justify-between hover:bg-teal-50/50 transition-colors">
-          <div>
-            <h4 class="font-bold text-sm text-[#0f172a]">Senior Electrician &bull; Residential Complex</h4>
-            <p class="text-xs text-stone-500 mt-0.5">Civil Lines &bull; Wage: ₹900 - ₹1,100 / day</p>
-          </div>
-          <span class="px-3 py-1 bg-teal-100 text-teal-800 text-xs font-semibold rounded-full">Apply</span>
+  <!-- ═══ FEATURE BAR ═══ -->
+  <section class="feature-bar">
+    <div class="feature-grid">
+
+      <!-- 1. Local Opportunities -->
+      <div class="feature-item">
+        <div class="feature-icon-wrap icon-green">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+            <circle cx="12" cy="10" r="3" />
+          </svg>
         </div>
-        <div class="p-4 rounded-2xl bg-stone-50 border border-stone-200/80 flex items-center justify-between hover:bg-teal-50/50 transition-colors">
-          <div>
-            <h4 class="font-bold text-sm text-[#0f172a]">Carpenter &bull; Door &amp; Cabinet Installation</h4>
-            <p class="text-xs text-stone-500 mt-0.5">Sector 14 &bull; Wage: ₹850 - ₹1,000 / day</p>
-          </div>
-          <span class="px-3 py-1 bg-teal-100 text-teal-800 text-xs font-semibold rounded-full">Apply</span>
-        </div>
-        <div class="p-4 rounded-2xl bg-stone-50 border border-stone-200/80 flex items-center justify-between hover:bg-teal-50/50 transition-colors">
-          <div>
-            <h4 class="font-bold text-sm text-[#0f172a]">Painter &amp; Plaster Work &bull; Interior Villa</h4>
-            <p class="text-xs text-stone-500 mt-0.5">Green Park &bull; Wage: ₹900 - ₹1,200 / day</p>
-          </div>
-          <span class="px-3 py-1 bg-teal-100 text-teal-800 text-xs font-semibold rounded-full">Apply</span>
+        <div class="feature-text">
+          <h3>Local Opportunities</h3>
+          <p>Jobs and workers near you</p>
         </div>
       </div>
 
-      <div id="modalFindWorker" class="hidden mt-5 space-y-3">
-        <p class="text-sm text-stone-600 mb-4">Verified daily-wage professionals available for immediate booking:</p>
-        <div class="p-4 rounded-2xl bg-stone-50 border border-stone-200/80 flex items-center justify-between hover:bg-teal-50/50 transition-colors">
-          <div>
-            <h4 class="font-bold text-sm text-[#0f172a]">Ramesh Sharma &bull; Electrician</h4>
-            <p class="text-xs text-stone-500 mt-0.5">7 yrs exp &bull; Rating: 4.9 ★ &bull; Verified Aadhaar</p>
-          </div>
-          <button class="px-4 py-1.5 bg-teal-700 text-white text-xs font-semibold rounded-xl hover:bg-teal-800">Call Now</button>
+      <!-- 2. Trusted Profiles -->
+      <div class="feature-item">
+        <div class="feature-icon-wrap icon-blue">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+            <polyline points="9 12 11 14 15 10" />
+          </svg>
         </div>
-        <div class="p-4 rounded-2xl bg-stone-50 border border-stone-200/80 flex items-center justify-between hover:bg-teal-50/50 transition-colors">
-          <div>
-            <h4 class="font-bold text-sm text-[#0f172a]">Jagdish Verma &bull; Carpenter</h4>
-            <p class="text-xs text-stone-500 mt-0.5">5 yrs exp &bull; Rating: 4.8 ★ &bull; Verified Tools</p>
-          </div>
-          <button class="px-4 py-1.5 bg-teal-700 text-white text-xs font-semibold rounded-xl hover:bg-teal-800">Call Now</button>
-        </div>
-        <div class="p-4 rounded-2xl bg-stone-50 border border-stone-200/80 flex items-center justify-between hover:bg-teal-50/50 transition-colors">
-          <div>
-            <h4 class="font-bold text-sm text-[#0f172a]">Mohan Kumar &bull; Plumber</h4>
-            <p class="text-xs text-stone-500 mt-0.5">6 yrs exp &bull; Rating: 5.0 ★ &bull; Ready Today</p>
-          </div>
-          <button class="px-4 py-1.5 bg-teal-700 text-white text-xs font-semibold rounded-xl hover:bg-teal-800">Call Now</button>
+        <div class="feature-text">
+          <h3>Trusted Profiles</h3>
+          <p>Verified and reliable</p>
         </div>
       </div>
 
-      <div id="modalLogin" class="hidden mt-5">
-        <form class="space-y-4" onsubmit="event.preventDefault(); closeModal();">
-          <div>
-            <label class="block text-xs font-semibold text-stone-700 mb-1.5">Mobile Number or Email</label>
-            <input type="text" required placeholder="Enter registered mobile or email" class="w-full px-4 py-3 rounded-2xl border border-stone-300 focus:outline-none focus:ring-2 focus:ring-teal-700 text-sm bg-white">
-          </div>
-          <div>
-            <label class="block text-xs font-semibold text-stone-700 mb-1.5">Password / OTP</label>
-            <input type="password" required placeholder="Enter password or OTP" class="w-full px-4 py-3 rounded-2xl border border-stone-300 focus:outline-none focus:ring-2 focus:ring-teal-700 text-sm bg-white">
-          </div>
-          <button type="submit" class="w-full py-3.5 bg-teal-700 hover:bg-teal-800 text-white font-semibold text-sm rounded-2xl shadow-md transition-all cursor-pointer">
-            Sign In
-          </button>
-        </form>
+      <!-- 3. Quick & Easy -->
+      <div class="feature-item">
+        <div class="feature-icon-wrap icon-amber">
+          <svg viewBox="0 0 24 24" fill="currentColor" stroke="none">
+            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+          </svg>
+        </div>
+        <div class="feature-text">
+          <h3>Quick &amp; Easy</h3>
+          <p>Simple and fast process</p>
+        </div>
       </div>
 
-      <div id="modalSignup" class="hidden mt-5">
-        <form class="space-y-4" onsubmit="event.preventDefault(); closeModal();">
-          <div>
-            <label class="block text-xs font-semibold text-stone-700 mb-1.5">Full Name</label>
-            <input type="text" required placeholder="Enter your name" class="w-full px-4 py-3 rounded-2xl border border-stone-300 focus:outline-none focus:ring-2 focus:ring-teal-700 text-sm bg-white">
-          </div>
-          <div>
-            <label class="block text-xs font-semibold text-stone-700 mb-1.5">I am registering as</label>
-            <select class="w-full px-4 py-3 rounded-2xl border border-stone-300 focus:outline-none focus:ring-2 focus:ring-teal-700 text-sm bg-white">
-              <option value="worker">Daily-Wage Worker (Electrician, Plumber, Mason, etc.)</option>
-              <option value="employer">Employer / Contractor / House Owner</option>
-            </select>
-          </div>
-          <div>
-            <label class="block text-xs font-semibold text-stone-700 mb-1.5">Mobile Number</label>
-            <input type="tel" required placeholder="10-digit mobile number" class="w-full px-4 py-3 rounded-2xl border border-stone-300 focus:outline-none focus:ring-2 focus:ring-teal-700 text-sm bg-white">
-          </div>
-          <button type="submit" class="w-full py-3.5 bg-teal-700 hover:bg-teal-800 text-white font-semibold text-sm rounded-2xl shadow-md transition-all cursor-pointer">
-            Create Account
-          </button>
-        </form>
+      <!-- 4. Build Communities -->
+      <div class="feature-item">
+        <div class="feature-icon-wrap icon-indigo">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+            <circle cx="9" cy="7" r="4" />
+            <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+            <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+          </svg>
+        </div>
+        <div class="feature-text">
+          <h3>Build Communities</h3>
+          <p>Support local employment</p>
+        </div>
       </div>
 
     </div>
-  </div>
+  </section>
 
-  <script>
-    lucide.createIcons();
-
-    function openModal(view) {
-      const overlay = document.getElementById('modalOverlay');
-      const views = {
-        'find-job': document.getElementById('modalFindJob'),
-        'find-worker': document.getElementById('modalFindWorker'),
-        'login': document.getElementById('modalLogin'),
-        'signup': document.getElementById('modalSignup')
-      };
-      const title = document.getElementById('modalTitle');
-
-      Object.values(views).forEach(el => el.classList.add('hidden'));
-
-      if (view === 'none' || !views[view]) {
-        overlay.classList.remove('flex');
-        overlay.classList.add('hidden');
-        window.location.hash = '';
-        return;
-      }
-
-      if (view === 'find-job') title.textContent = 'Nearby Daily-Wage Jobs';
-      if (view === 'find-worker') title.textContent = 'Hire Verified Local Workers';
-      if (view === 'login') title.textContent = 'Login to Job Interview';
-      if (view === 'signup') title.textContent = 'Create Your Account';
-
-      views[view].classList.remove('hidden');
-      overlay.classList.remove('hidden');
-      overlay.classList.add('flex');
-      window.location.hash = view;
-    }
-
-    function closeModal() {
-      openModal('none');
-    }
-
-    window.addEventListener('hashchange', () => {
-      const hash = window.location.hash.replace('#', '');
-      if (['find-job', 'find-worker', 'login', 'signup'].includes(hash)) {
-        openModal(hash);
-      } else {
-        openModal('none');
-      }
-    });
-
-    const initHash = window.location.hash.replace('#', '');
-    if (['find-job', 'find-worker', 'login', 'signup'].includes(initHash)) {
-      openModal(initHash);
-    }
-  </script>
 </body>
+
 </html>
