@@ -713,35 +713,52 @@
       }
 
       .hero {
-        grid-template-columns: 1fr;
+        grid-template-columns: minmax(0, 1fr);
         padding: 2rem 1.25rem 2.5rem;
         gap: 2.2rem;
       }
 
+      .hero-left,
       .hero-right {
-        order: -1;
+        min-width: 0;
+        width: 100%;
       }
 
-      .hero-img-frame {
+      .hero-right {
+        order: -1;
+        display: block;
+        width: 100%;
         max-width: 100%;
       }
 
+      .hero-img-frame {
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+      }
+
       .hero-img-frame img {
+        width: 100%;
+        max-width: 100%;
         height: 280px;
       }
 
       .hero-img-frame::before {
-        inset: -10px;
+        inset: -6px;
       }
 
       .img-badge {
-        left: -5px;
+        left: 14px;
         bottom: 14px;
       }
 
       .img-tag {
-        right: -5px;
+        right: 14px;
         top: 14px;
+      }
+
+      .img-tag span {
+        font-size: 0.7rem;
       }
 
       .benefits-grid {
@@ -754,8 +771,44 @@
     }
 
     @media (max-width: 520px) {
+      .navbar {
+        padding: 0 1rem;
+      }
+
+      .nav-tagline {
+        font-size: 0.52rem;
+        letter-spacing: 0;
+      }
+
       .hero-heading {
         font-size: 2rem;
+      }
+
+      .hero-btns {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .btn-find-job,
+      .btn-find-worker {
+        justify-content: center;
+        width: 100%;
+      }
+
+      .img-badge {
+        left: 10px;
+        bottom: 10px;
+        padding: 0.45rem 0.7rem;
+      }
+
+      .img-tag {
+        right: 8px;
+        top: 10px;
+        padding: 0.35rem 0.6rem;
+      }
+
+      .img-tag span {
+        font-size: 0.62rem;
       }
 
       .benefits-grid {
@@ -771,6 +824,25 @@
       }
     }
   </style>
+<script>
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    const f = document.querySelector('.hero-img-frame');
+    const h = document.querySelector('.hero');
+    const b = document.body;
+    const tag = document.querySelector('.img-tag');
+    const info = {
+      windowInnerWidth: window.innerWidth,
+      bodyWidth: b.clientWidth,
+      heroWidth: h.clientWidth,
+      frameWidth: f ? f.clientWidth : 0,
+      frameBounding: f ? f.getBoundingClientRect() : {},
+      tagBounding: tag ? tag.getBoundingClientRect() : {}
+    };
+    fetch('http://127.0.0.1:3005/debug', { method: 'POST', body: JSON.stringify(info) });
+  }, 500);
+});
+</script>
 </head>
 
 <body>
@@ -856,8 +928,8 @@
       <div class="hero-right">
         <div class="hero-img-frame">
 
-          <!-- Main group photo (the diverse professionals image) -->
-          <img src="assets/professionals-group.png" alt="Professionals from different trades and occupations">
+          <!-- Main construction worker photograph -->
+          <img src="assets/hero-construction-worker.jpg" alt="Realistic Indian construction worker wearing yellow hard hat and orange safety vest" id="heroWorkerImg">
 
           <!-- Floating verified badge bottom-left -->
           <div class="img-badge">
